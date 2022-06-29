@@ -5,7 +5,7 @@ import { Routes, Route, Navigate } from "react-router-dom";
 import { Dashboard } from "./Pages/";
 import { Navbar, MyDrawer } from "./Components/";
 
-function App() {
+const App = () => {
   return (
     <Container maxWidth={false}>
       <Navbar />
@@ -16,6 +16,6 @@ function App() {
       </Routes>
     </Container>
   );
-}
+};
 
 export default App;
