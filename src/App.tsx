@@ -1,11 +1,20 @@
-import React from 'react';
-import './App.css';
+import React from "react";
+import { Container } from "@mui/material";
+import { Routes, Route, Navigate } from "react-router-dom";
+
+import { Dashboard } from "./Pages/";
+import { Navbar, MyDrawer } from "./Components/";
 
 function App() {
   return (
-    <div className="App">
-      Hello World
-    </div>
+    <Container maxWidth={false}>
+      <Navbar />
+      <MyDrawer />
+      <Routes>
+        <Route path="/" element={<Navigate to="/home" replace />} />
+        <Route path="/home" element={<Dashboard />} />
+      </Routes>
+    </Container>
   );
 }
 
