@@ -6,7 +6,11 @@ const Navbar = () => {
   return (
     <AppBar
       position="fixed"
-      sx={{ zIndex: (theme) => theme.zIndex.drawer + 1 }}
+      sx={{
+        zIndex: (theme) => theme.zIndex.drawer + 1,
+        boxShadow: "0px 0px 1px 1px  rgba(0, 0, 0, 0.2)",
+      }}
+      color="default"
     >
       <Toolbar>
         <IconButton
