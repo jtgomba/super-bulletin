@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import {
   Toolbar,
   Divider,
@@ -12,12 +13,20 @@ import {
 } from "@mui/material";
 import HomeIcon from "@mui/icons-material/Home";
 import SupervisorAccountIcon from "@mui/icons-material/SupervisorAccount";
+import SchoolIcon from "@mui/icons-material/School";
+import DashboardIcon from "@mui/icons-material/Dashboard";
 
 const drawerWidth = 240;
 
 const DrawerLinks = [
-  { linkName: "Dashboard", linkIcon: <HomeIcon /> },
-  { linkName: "Manage Users", linkIcon: <SupervisorAccountIcon /> },
+  { linkName: "Dashboard", linkIcon: <HomeIcon />, destination: "/" },
+  {
+    linkName: "Manage Users",
+    linkIcon: <SupervisorAccountIcon />,
+    destination: "/manage",
+  },
+  { linkName: "My Class", linkIcon: <SchoolIcon />, destination: "/class" },
+  { linkName: "My Board", linkIcon: <DashboardIcon />, destination: "/board" },
 ];
 
 const drawer = (
@@ -25,9 +34,9 @@ const drawer = (
     <Toolbar />
     <Divider />
     <List>
-      {DrawerLinks.map(({ linkName, linkIcon }, index) => (
+      {DrawerLinks.map(({ linkName, linkIcon, destination }) => (
         <ListItem key={linkName} disablePadding>
-          <ListItemButton>
+          <ListItemButton component={Link} to={destination}>
             <ListItemIcon>{linkIcon}</ListItemIcon>
             <ListItemText primary={linkName} />
           </ListItemButton>
