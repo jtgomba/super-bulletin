@@ -24,7 +24,7 @@ const DrawerLinks = [
     linkIcon: <SupervisorAccountIcon />,
     destination: "/manage",
   },
-  { linkName: "My Class", linkIcon: <SchoolIcon />, destination: "/class" },
+  { linkName: "My Classes", linkIcon: <SchoolIcon />, destination: "/class" },
   { linkName: "My Board", linkIcon: <DashboardIcon />, destination: "/board" },
 ];
 
@@ -55,7 +55,8 @@ const MyDrawer = () => {
     <Box
       component="nav"
       sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-      aria-label="mailbox folders">
+      aria-label="mailbox folders"
+    >
       <Drawer
         variant="temporary"
         open={mobileOpen}
@@ -66,7 +67,8 @@ const MyDrawer = () => {
         sx={{
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
-        }}>
+        }}
+      >
         {drawer}
       </Drawer>
       <Drawer
@@ -75,7 +77,8 @@ const MyDrawer = () => {
           display: { xs: "none", sm: "block" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
-        open>
+        open
+      >
         {drawer}
       </Drawer>
     </Box>

@@ -14,7 +14,7 @@ const BoardNav = () => {
       >
         <DashboardIcon color="disabled" sx={{ mr: 2 }} fontSize="large" />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Class Name
+          Board Name
         </Typography>
         <Button
           color="inherit"
