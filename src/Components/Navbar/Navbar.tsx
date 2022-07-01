@@ -10,15 +10,13 @@ const Navbar = () => {
         zIndex: (theme) => theme.zIndex.drawer + 1,
         boxShadow: "0px 0px 1px 1px  rgba(0, 0, 0, 0.2)",
       }}
-      color="default"
-    >
+      color="default">
       <Toolbar>
         <IconButton
           color="inherit"
           aria-label="open drawer"
           edge="start"
-          sx={{ mr: 2, display: { sm: "none" } }}
-        >
+          sx={{ mr: 2, display: { sm: "none" } }}>
           <MenuIcon />
         </IconButton>
         <Typography variant="h6" noWrap component="div">
