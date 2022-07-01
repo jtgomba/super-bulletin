@@ -1,20 +1,30 @@
 import * as React from "react";
-import AppBar from "@mui/material/AppBar";
-import Box from "@mui/material/Box";
-import Toolbar from "@mui/material/Toolbar";
-import IconButton from "@mui/material/IconButton";
-import Typography from "@mui/material/Typography";
-import Menu from "@mui/material/Menu";
+import { Link } from "react-router-dom";
+import {
+  AppBar,
+  Box,
+  Toolbar,
+  IconButton,
+  Typography,
+  Menu,
+  Container,
+  Button,
+  Tooltip,
+  MenuItem,
+} from "@mui/material/";
+
 import MenuIcon from "@mui/icons-material/Menu";
-import Container from "@mui/material/Container";
-import Button from "@mui/material/Button";
-import Tooltip from "@mui/material/Tooltip";
-import MenuItem from "@mui/material/MenuItem";
+
 import AdbIcon from "@mui/icons-material/Adb";
 import { AccountCircle } from "@mui/icons-material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
 
-const pages = ["Home", "Manage Users", "My Classes", "My Boards"];
+const pages = [
+  { linkName: "Home", destination: "/" },
+  { linkName: "Manage Users", destination: "/manage" },
+  { linkName: "My Classes", destination: "/class" },
+  { linkName: "My Board", destination: "/board" },
+];
 const settings = ["Profile", "Account", "Logout"];
 
 const Navbar = () => {
@@ -79,11 +89,13 @@ const Navbar = () => {
           >
             {pages.map((page) => (
               <Button
-                key={page}
+                key={page.linkName}
                 onClick={handleCloseNavMenu}
+                component={Link}
+                to={page.destination}
                 sx={{ my: 2, color: "inherit", display: "block" }}
               >
-                {page}
+                {page.linkName}
               </Button>
             ))}
           </Box>
@@ -118,9 +130,14 @@ const Navbar = () => {
               }}
             >
               {pages.map((page) => (
-                <MenuItem key={page} onClick={handleCloseNavMenu}>
+                <MenuItem
+                  key={page.linkName}
+                  onClick={handleCloseNavMenu}
+                  component={Link}
+                  to={page.destination}
+                >
                   <Typography textAlign="center" sx={{ color: "inherit" }}>
-                    {page}
+                    {page.linkName}
                   </Typography>
                 </MenuItem>
               ))}
