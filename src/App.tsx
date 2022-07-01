@@ -3,19 +3,17 @@ import { Container, Box, Toolbar } from "@mui/material";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Dashboard, Board, ManageUsers, MyClass } from "./Pages/";
-import { Navbar, MyDrawer } from "./Components/";
+import { Navbar } from "./Components/";
 
 const App = () => {
   return (
     <Container maxWidth={false}>
       <Navbar />
-      <MyDrawer />
       <Box
         component="main"
         sx={{
           flexGrow: 1,
           p: 3,
-          marginLeft: { sm: "230px" },
           minHeight: "100vh",
         }}
       >
