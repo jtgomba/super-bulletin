@@ -12,7 +12,12 @@ const App = () => {
       <MyDrawer />
       <Box
         component="main"
-        sx={{ flexGrow: 1, p: 3, marginLeft: { sm: "230px" } }}
+        sx={{
+          flexGrow: 1,
+          p: 3,
+          marginLeft: { sm: "230px" },
+          minHeight: "100vh",
+        }}
       >
         <Toolbar />
         <Routes>

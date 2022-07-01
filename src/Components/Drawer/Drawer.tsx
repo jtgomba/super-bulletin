@@ -32,7 +32,6 @@ const DrawerLinks = [
 const drawer = (
   <Box>
     <Toolbar />
-    <Divider />
     <List>
       {DrawerLinks.map(({ linkName, linkIcon, destination }) => (
         <ListItem key={linkName} disablePadding>
