@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Toolbar,
-  Divider,
   List,
   ListItem,
   ListItemButton,
@@ -32,7 +31,6 @@ const DrawerLinks = [
 const drawer = (
   <Box>
     <Toolbar />
-    <Divider />
     <List>
       {DrawerLinks.map(({ linkName, linkIcon, destination }) => (
         <ListItem key={linkName} disablePadding>
@@ -57,8 +55,7 @@ const MyDrawer = () => {
     <Box
       component="nav"
       sx={{ width: { sm: drawerWidth }, flexShrink: { sm: 0 } }}
-      aria-label="mailbox folders"
-    >
+      aria-label="mailbox folders">
       <Drawer
         variant="temporary"
         open={mobileOpen}
@@ -69,8 +66,7 @@ const MyDrawer = () => {
         sx={{
           display: { xs: "block", sm: "none" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
-        }}
-      >
+        }}>
         {drawer}
       </Drawer>
       <Drawer
@@ -79,8 +75,7 @@ const MyDrawer = () => {
           display: { xs: "none", sm: "block" },
           "& .MuiDrawer-paper": { boxSizing: "border-box", width: drawerWidth },
         }}
-        open
-      >
+        open>
         {drawer}
       </Drawer>
     </Box>
