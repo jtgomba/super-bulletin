@@ -1,15 +1,19 @@
-import { Box } from "@mui/material";
 import React from "react";
+import { Box, Button } from "@mui/material";
 
 import BoardList from "./BoardList/BoardList";
 import BoardNav from "./BoardNav/BoardNav";
+import BoardListForm from "./BoardList/BoardListForm/BoardListForm";
 
 const Board = () => {
   return (
-    <Box>
+    <>
       <BoardNav />
-      <BoardList />
-    </Box>
+      <Box sx={{ display: "flex", flexDirection: "row" }}>
+        <BoardList />
+        <BoardListForm />
+      </Box>
+    </>
   );
 };
 

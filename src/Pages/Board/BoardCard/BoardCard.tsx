@@ -36,10 +36,10 @@ const BoardCard = ({ title, priority, description }: Ticket) => {
         avatar={<Chip label="With Text" size="small" color={prio} />}
       />
       <CardContent sx={{ padding: "0px 0px 0px 10px" }}>
-        <Typography component="p" variant="h6">
+        <Typography component="p" variant="body1" sx={{ marginRight: 1 }}>
           {title}
         </Typography>
-        <Typography component="p" variant="subtitle1">
+        <Typography component="p" variant="body2">
           {description}
         </Typography>
       </CardContent>

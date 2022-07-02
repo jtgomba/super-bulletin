@@ -21,10 +21,14 @@ export const counterSlice = createSlice({
     addTicket: (state, action: PayloadAction<Ticket>) => {
       state.value.push(action.payload);
     },
+    removeTicket: (state, action: PayloadAction<string>) => {
+      const ticketId = action.payload;
+      state.value = state.value.filter((item) => item.id !== ticketId);
+    },
   },
 });
 
-export const { addTicket } = counterSlice.actions;
+export const { addTicket, removeTicket } = counterSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
 export const selectTickets = (state: RootState) => state.tickets.value;
