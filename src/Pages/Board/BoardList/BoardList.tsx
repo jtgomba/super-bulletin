@@ -4,6 +4,26 @@ import { grey } from "@mui/material/colors";
 import AddIcon from "@mui/icons-material/Add";
 
 import BoardCard from "../BoardCard/BoardCard";
+import { Ticket } from "../../../Types/types";
+
+const tickets: Ticket[] = [
+  {
+    id: "1",
+    title: "My first card",
+    description: "This is the description",
+    priority: "medium",
+    status: "open",
+    type: "announcement",
+  },
+  {
+    id: "2",
+    title: "My second card",
+    description: "This is the description",
+    priority: "medium",
+    status: "open",
+    type: "announcement",
+  },
+];
 
 const BoardList = () => {
   return (
@@ -23,8 +43,17 @@ const BoardList = () => {
         <MoreHorizIcon />
       </Stack>
       <Stack spacing={1} alignItems="stretch" sx={{ marginBottom: 1 }}>
-        <BoardCard />
-        <BoardCard />
+        {tickets &&
+          tickets.map((ticket) => (
+            <BoardCard
+              title={ticket.title}
+              description={ticket.description}
+              id={ticket.id}
+              priority={ticket.priority}
+              status={ticket.status}
+              type={ticket.type}
+            />
+          ))}
       </Stack>
       <Box>
         <Button startIcon={<AddIcon />} color="inherit">

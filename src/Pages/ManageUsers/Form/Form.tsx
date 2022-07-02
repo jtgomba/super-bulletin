@@ -1,13 +1,11 @@
 import * as React from "react";
 import { Theme, useTheme } from "@mui/material/styles";
 import {
-  OutlinedInput,
   InputLabel,
   MenuItem,
   FormControl,
   Box,
   Divider,
-  FormHelperText,
   Button,
 } from "@mui/material/";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
@@ -92,7 +90,7 @@ const Form = () => {
       <Divider sx={{ margin: "20px 0px" }} />
       <FormControl variant="filled" sx={{ m: 1, width: 300 }}>
         <InputLabel id="demo-simple-select-filled-label">
-          Select class to assign to
+          Select project to assign to
         </InputLabel>
         <Select
           labelId="demo-simple-select-filled-label"
