@@ -60,31 +60,31 @@ const Navbar = () => {
       color="default"
     >
       <Container maxWidth="xl">
-        <Toolbar disableGutters>
-          <HistoryEduRoundedIcon
-            sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
-          />
-          <Typography
-            variant="h6"
-            noWrap
-            component="a"
-            href="/"
-            sx={{
-              mr: 2,
-              display: { xs: "none", md: "flex" },
-              fontFamily: "monospace",
-              fontWeight: 700,
-              letterSpacing: ".3rem",
-              color: "inherit",
-              textDecoration: "none",
-            }}
-          >
-            Class Board
-          </Typography>
+        <Toolbar disableGutters sx={{ justifyContent: "space-evenly" }}>
+          <Box sx={{ display: "flex" }}>
+            <HistoryEduRoundedIcon
+              sx={{ display: { xs: "none", md: "flex" }, mr: 1 }}
+            />
+            <Typography
+              variant="h6"
+              noWrap
+              component="a"
+              href="/"
+              sx={{
+                display: { xs: "none", md: "flex" },
+                fontFamily: "monospace",
+                fontWeight: 700,
+                letterSpacing: ".3rem",
+                color: "inherit",
+                textDecoration: "none",
+              }}
+            >
+              Class Board
+            </Typography>
+          </Box>
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-              flexGrow: 1,
             }}
           >
             {pages.map((page) => (
@@ -165,7 +165,9 @@ const Navbar = () => {
             Class Board
           </Typography>
 
-          <Box sx={{ flexGrow: 0 }}>
+          <Box
+            sx={{ flexGrow: 0.2, display: "flex", justifyContent: "flex-end" }}
+          >
             <Tooltip title="Open settings">
               <IconButton
                 onClick={handleOpenUserMenu}
