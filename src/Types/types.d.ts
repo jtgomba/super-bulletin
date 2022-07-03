@@ -35,8 +35,6 @@ export type Ticket = {
   description: string;
   assignedTo?: User | User[];
   submittedBy?: string;
-  ticketList: string;
-  class?: Class;
   priority: "low" | "normal" | "medium" | "high";
   status: "open" | "closed";
   type: "task" | "announcement" | "issue";
@@ -46,9 +44,14 @@ export type Ticket = {
   history?: HistoryItem[];
 };
 
+interface BoardList {
+  title: string;
+  tickets: Ticket[];
+}
+
 export type Board = {
   id: string;
   name: string;
-  class: Class;
-  ticket: Ticket[];
+  tiedTo: Class | User;
+  lists: BoardList[];
 };
