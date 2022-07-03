@@ -1,29 +1,31 @@
-export type User = {
+export type UserType = {
   id: string;
   name: string;
   email: string;
   password: string;
   role: "user" | "manager" | "admin";
   readonly createdAt: Date;
-  classes: Class | Class[];
-  board: Board;
+  projects?: string | string[];
 };
 
-export type Class = {
+export type ProjectType = {
   id: string;
-  teacher: User;
-  students: User[];
+  projectName: string;
+  description: string;
+  manager: UserType;
+  users: UserType[];
   readonly createdAt: Date;
+  tickets: TicketType[];
 };
 
-interface Comment {
+interface CommentInterface {
   id: string;
-  commenter: User;
+  commenter: UserType;
   message: string;
   readonly createdAt: Date;
 }
 
-interface HistoryItem {
+interface HistoryItemInterface {
   id: string;
   property: string;
   oldValue: string;
@@ -31,29 +33,17 @@ interface HistoryItem {
   dateChanged: Date;
 }
 
-export type Ticket = {
+export type TicketType = {
   id: string;
   title: string;
   description: string;
-  assignedTo?: User | User[];
-  submittedBy?: User;
+  assignedTo?: UserType | UserType[];
+  submittedBy?: UserType;
   priority: "low" | "normal" | "medium" | "high" | undefined;
   status: "open" | "closed" | undefined;
   type: "task" | "announcement" | "issue" | undefined;
-  readonly createdAt?: Date;
+  readonly createdAt: Date;
   updatedAt?: Date;
-  comments?: Comment[];
-  history?: HistoryItem[];
-};
-
-interface BoardList {
-  title: string;
-  tickets: Ticket[];
-}
-
-export type Board = {
-  id: string;
-  name: string;
-  tiedTo: Class | User;
-  lists: BoardList[];
+  comments?: CommentInterface[];
+  history?: HistoryItemInterface[];
 };

@@ -3,7 +3,7 @@ import { Container, Box, Toolbar } from "@mui/material";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Dashboard, Board, ManageUsers, Projects } from "./Pages/";
-import { Navbar } from "./Components/";
+import { Navbar, ProjectBoard } from "./Components/";
 
 const App = () => {
   return (
@@ -23,6 +23,7 @@ const App = () => {
           <Route path="/home" element={<Dashboard />} />
           <Route path="/manage" element={<ManageUsers />} />
           <Route path="/projects" element={<Projects />} />
+          <Route path="/projects/:id" element={<ProjectBoard />} />
           <Route path="/board" element={<Board />} />
         </Routes>
       </Box>

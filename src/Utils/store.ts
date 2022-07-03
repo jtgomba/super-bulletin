@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import ticketsReducer from "./reducers/ticketsReducer";
+import projectsReducer from "./reducers/projectsReducer";
 
 export const store = configureStore({
   reducer: {
     tickets: ticketsReducer,
+    projects: projectsReducer,
   },
 });
 

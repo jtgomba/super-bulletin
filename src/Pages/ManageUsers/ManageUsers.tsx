@@ -1,7 +1,7 @@
 import React from "react";
 import { Typography, Box, Stack } from "@mui/material";
 import Form from "./Form/Form";
-import TableComp from "../../Components/TableComp/TableComp";
+import TableComponent from "../../Components/TableComponent/TableComponent";
 
 const ManageUsers = () => {
   return (
@@ -15,7 +15,7 @@ const ManageUsers = () => {
         spacing={2}
       >
         <Form />
-        <TableComp />
+        <TableComponent />
       </Stack>
     </>
   );
