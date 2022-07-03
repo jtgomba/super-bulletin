@@ -1,3 +1,13 @@
+# Super Bulletin
+
+Provide announcements and assign tasks or issues to be dealt through a clear and intuitive interface.
+
+Promote clean and efficient collaboration among users through a safe and easy to use application.
+
+React with TypeScript to build robust, reusable functional components through TypeScripts expansive tooling and type checking.
+
+MUI to provide a responsive, accessible interface with a good user experience useable on desktop, tablet or mobile.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
