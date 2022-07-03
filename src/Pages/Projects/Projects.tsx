@@ -1,4 +1,4 @@
-import React from "react";
+import { Link } from "react-router-dom";
 import {
   Paper,
   Table,
@@ -9,10 +9,14 @@ import {
   TableRow,
   Typography,
 } from "@mui/material";
+import { useNavigate } from "react-router-dom";
+
 import { useAppSelector } from "../../Utils/hooks";
 import { selectProjects } from "../../Utils/reducers/projectsReducer";
 
 const Projects = () => {
+  let navigate = useNavigate();
+
   const projects = useAppSelector(selectProjects);
 
   return (
@@ -35,7 +39,12 @@ const Projects = () => {
             {projects.map((project) => (
               <TableRow
                 key={project.id}
-                sx={{ "&:last-child td, &:last-child th": { border: 0 } }}
+                sx={{
+                  "&:last-child td, &:last-child th": { border: 0 },
+                  cursor: "pointer",
+                }}
+                onClick={() => navigate(`${project.id}`, { replace: true })}
+                hover
               >
                 <TableCell component="th" scope="row">
                   {project.projectName}

@@ -24,13 +24,17 @@ const BoardCard = ({ title, priority, description }: TicketType) => {
   >();
 
   useEffect(() => {
-    if (priority === "medium") {
+    if (priority === "Normal") {
+      setPrio("primary");
+    } else if (priority === "Medium") {
       setPrio("warning");
+    } else if (priority === "High") {
+      setPrio("error");
     }
   }, [priority]);
 
   return (
-    <Card sx={{ width: 280 }}>
+    <Card sx={{ width: 280, minHeight: "130px" }}>
       <CardHeader
         sx={{ padding: 1 }}
         avatar={<Chip label="With Text" size="small" color={prio} />}

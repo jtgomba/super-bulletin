@@ -3,12 +3,20 @@ import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
 import { grey } from "@mui/material/colors";
 
 import BoardCard from "../BoardCard/BoardCard";
-import { useAppSelector } from "../../../Utils/hooks";
-import { selectTickets } from "../../../Utils/reducers/ticketsReducer";
 import BoardListForm from "./BoardListForm/BoardListForm";
+import { TicketType } from "../../../Types/types";
+import { useAppSelector } from "../../../Utils/hooks";
+import { selectProjects } from "../../../Utils/reducers/projectsReducer";
 
-const BoardList = () => {
-  const tickets = useAppSelector(selectTickets);
+interface BoardListInterface {
+  priority: string;
+  id: string | undefined;
+}
+
+const BoardList = ({ priority, id }: BoardListInterface) => {
+  const tickets = useAppSelector(selectProjects)
+    .filter((project) => project.id === id)[0]
+    .tickets.filter((ticket) => ticket.priority === priority);
 
   return (
     <Stack
@@ -22,16 +30,26 @@ const BoardList = () => {
     >
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography gutterBottom component="p" variant="h6">
-          List Name
+          {priority}
         </Typography>
         <IconButton>
           <MoreHorizIcon />
         </IconButton>
       </Stack>
-      <Stack spacing={1} alignItems="center" sx={{ marginBottom: 1 }}>
+      <Stack
+        spacing={1}
+        alignItems="center"
+        sx={{
+          marginBottom: 1,
+          maxHeight: "65vh",
+          overflow: "hidden auto",
+          "&:last-child": { dispaly: "none" },
+        }}
+      >
         {tickets &&
           tickets.map((ticket) => (
             <BoardCard
+              key={ticket.id}
               title={ticket.title}
               description={ticket.description}
               id={ticket.id}

@@ -16,9 +16,9 @@ const BoardListForm = () => {
     id: "1",
     title: ticketTitle,
     description: "",
-    priority: "low",
-    status: "open",
-    type: "task",
+    priority: undefined,
+    status: undefined,
+    type: undefined,
     createdAt: new Date(),
   };
 

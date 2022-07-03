@@ -2,8 +2,18 @@ import React from "react";
 import { Box, Toolbar, Typography, Button } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
+import { useAppSelector } from "../../../Utils/hooks";
+import { selectProjects } from "../../../Utils/reducers/projectsReducer";
 
-const BoardNav = () => {
+interface BoardNavInterface {
+  id: string | undefined;
+}
+
+const BoardNav = ({ id }: BoardNavInterface) => {
+  const project = useAppSelector(selectProjects).filter(
+    (project) => project.id === id
+  )[0];
+
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 3 }}>
       <Toolbar
@@ -14,7 +24,7 @@ const BoardNav = () => {
       >
         <DashboardIcon color="disabled" sx={{ mr: 2 }} fontSize="large" />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Project Name
+          {project.projectName}
         </Typography>
         <Button
           color="inherit"

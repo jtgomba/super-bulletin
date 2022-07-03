@@ -39,9 +39,9 @@ export type TicketType = {
   description: string;
   assignedTo?: UserType | UserType[];
   submittedBy?: UserType;
-  priority: "low" | "normal" | "medium" | "high" | undefined;
-  status: "open" | "closed" | undefined;
-  type: "task" | "announcement" | "issue" | undefined;
+  priority: "Low" | "Normal" | "Medium" | "High" | undefined;
+  status: "Open" | "Closed" | undefined;
+  type: "Task" | "Announcement" | "Issue" | undefined;
   readonly createdAt: Date;
   updatedAt?: Date;
   comments?: CommentInterface[];
