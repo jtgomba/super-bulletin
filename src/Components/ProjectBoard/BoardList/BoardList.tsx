@@ -4,7 +4,6 @@ import { grey } from "@mui/material/colors";
 
 import BoardCard from "../BoardCard/BoardCard";
 import BoardListForm from "./BoardListForm/BoardListForm";
-import { TicketType } from "../../../Types/types";
 import { useAppSelector } from "../../../Utils/hooks";
 import { selectProjects } from "../../../Utils/reducers/projectsReducer";
 
