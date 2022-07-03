@@ -36,7 +36,6 @@ const BoardList = () => {
               priority={ticket.priority}
               status={ticket.status}
               type={ticket.type}
-              ticketList={ticket.ticketList}
             />
           ))}
       </Stack>

@@ -12,11 +12,10 @@ const BoardListForm = () => {
   const [ticketTitle, setTicketTitle] = useState<string>("");
   const [showForm, setShowForm] = useState(false);
 
-  const ticketg: Ticket = {
+  const ticket: Ticket = {
     id: "1",
     title: ticketTitle,
     description: "",
-    ticketList: "",
     priority: "low",
     status: "open",
     type: "task",
@@ -24,7 +23,7 @@ const BoardListForm = () => {
 
   const handleAddTicket = () => {
     setShowForm(!showForm);
-    dispatch(addTicket(ticketg));
+    dispatch(addTicket(ticket));
     setTicketTitle("");
   };
 

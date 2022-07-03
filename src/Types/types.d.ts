@@ -3,8 +3,10 @@ export type User = {
   name: string;
   email: string;
   password: string;
-  role: "student" | "teacher" | "admin";
+  role: "user" | "manager" | "admin";
   readonly createdAt: Date;
+  classes: Class | Class[];
+  board: Board;
 };
 
 export type Class = {
@@ -34,10 +36,10 @@ export type Ticket = {
   title: string;
   description: string;
   assignedTo?: User | User[];
-  submittedBy?: string;
-  priority: "low" | "normal" | "medium" | "high";
-  status: "open" | "closed";
-  type: "task" | "announcement" | "issue";
+  submittedBy?: User;
+  priority: "low" | "normal" | "medium" | "high" | undefined;
+  status: "open" | "closed" | undefined;
+  type: "task" | "announcement" | "issue" | undefined;
   readonly createdAt?: Date;
   updatedAt?: Date;
   comments?: Comment[];

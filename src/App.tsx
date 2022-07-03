@@ -2,7 +2,7 @@ import React from "react";
 import { Container, Box, Toolbar } from "@mui/material";
 import { Routes, Route, Navigate } from "react-router-dom";
 
-import { Dashboard, Board, ManageUsers, MyClass } from "./Pages/";
+import { Dashboard, Board, ManageUsers, Projects } from "./Pages/";
 import { Navbar } from "./Components/";
 
 const App = () => {
@@ -22,7 +22,7 @@ const App = () => {
           <Route path="/" element={<Navigate to="/home" replace />} />
           <Route path="/home" element={<Dashboard />} />
           <Route path="/manage" element={<ManageUsers />} />
-          <Route path="/class" element={<MyClass />} />
+          <Route path="/projects" element={<Projects />} />
           <Route path="/board" element={<Board />} />
         </Routes>
       </Box>

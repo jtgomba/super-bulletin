@@ -19,7 +19,7 @@ import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
 const pages = [
   { linkName: "Home", destination: "/" },
   { linkName: "Manage Users", destination: "/manage" },
-  { linkName: "My Classes", destination: "/class" },
+  { linkName: "My Projects", destination: "/projects" },
   { linkName: "My Board", destination: "/board" },
 ];
 const settings = ["Profile", "Account", "Logout"];
@@ -76,7 +76,7 @@ const Navbar = () => {
                 textDecoration: "none",
               }}
             >
-              Class Board
+              Super Bulletin
             </Typography>
           </Box>
           <Box

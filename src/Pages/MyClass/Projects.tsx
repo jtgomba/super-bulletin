@@ -2,15 +2,15 @@ import React from "react";
 import { Typography } from "@mui/material";
 import TableComp from "../../Components/TableComp/TableComp";
 
-const MyClass = () => {
+const Projects = () => {
   return (
     <>
       <Typography variant="h2" gutterBottom>
-        My Classes
+        My Projects
       </Typography>
       <TableComp />
     </>
   );
 };
 
-export default MyClass;
+export default Projects;
