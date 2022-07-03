@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Button } from "@mui/material";
+import { Box } from "@mui/material";
 
 import BoardList from "./BoardList/BoardList";
 import BoardNav from "./BoardNav/BoardNav";
