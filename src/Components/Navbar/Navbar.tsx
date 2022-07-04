@@ -15,6 +15,8 @@ import {
 import MenuIcon from "@mui/icons-material/Menu";
 import { AccountCircle } from "@mui/icons-material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
+import { useAppDispatch } from "../../Utils/hooks";
+import { logout } from "../../Utils/reducers/authReducer";
 
 const pages = [
   { linkName: "Home", destination: "home" },
@@ -22,9 +24,10 @@ const pages = [
   { linkName: "My Projects", destination: "projects" },
   { linkName: "My Board", destination: "board" },
 ];
-const settings = ["Account", "Logout"];
 
 const Navbar = () => {
+  const dispatch = useAppDispatch();
+
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
     null
   );
@@ -43,8 +46,9 @@ const Navbar = () => {
     setAnchorElNav(null);
   };
 
-  const handleCloseUserMenu = () => {
+  const handleCloseUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(null);
+    dispatch(logout());
   };
 
   return (
@@ -193,11 +197,9 @@ const Navbar = () => {
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}
             >
-              {settings.map((setting) => (
-                <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                  <Typography textAlign="center">{setting}</Typography>
-                </MenuItem>
-              ))}
+              <MenuItem onClick={handleCloseUserMenu}>
+                <Typography textAlign="center">Logout</Typography>
+              </MenuItem>
             </Menu>
           </Box>
         </Toolbar>
