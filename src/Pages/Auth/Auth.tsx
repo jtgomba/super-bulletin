@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Button,
@@ -10,11 +10,12 @@ import {
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useNavigate } from "react-router-dom";
 
 import Input from "./Input";
-import { useAppDispatch, useAppSelector } from "../../Utils/hooks";
-import { login, selectAuth } from "../../Utils/reducers/authReducer";
+import { useAppDispatch } from "../../Utils/hooks";
+import { login } from "../../Utils/reducers/authReducer";
+import { useLoginUserMutation } from "../../Utils/reducers/fireAuthReducer";
+import { auth } from "../../Utils/firebaseConfig";
 
 const theme = createTheme();
 
@@ -27,9 +28,9 @@ const initialState = {
 };
 
 const Auth = () => {
-  let navigate = useNavigate();
+  const [loginUser, { isError, isLoading, isSuccess }] = useLoginUserMutation();
+
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectAuth);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialState);
@@ -38,11 +39,16 @@ const Auth = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    dispatch(
+    /*     dispatch(
       login({ value: { email: formData.email, password: formData.password } })
-    );
+    ); */
+    await loginUser({
+      email: formData.email,
+      password: formData.password,
+    }).unwrap();
+    console.log(auth.currentUser);
   };
 
   const handleChange = (
@@ -55,13 +61,7 @@ const Auth = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
-  /* 
-  useEffect(() => {
-    if (user) {
-      navigate("/", { replace: true });
-    }
-  }, [navigate, user]);
- */
+
   return (
     <Container maxWidth="xs">
       <Paper
