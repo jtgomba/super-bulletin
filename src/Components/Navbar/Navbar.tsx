@@ -17,12 +17,12 @@ import { AccountCircle } from "@mui/icons-material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
 
 const pages = [
-  { linkName: "Home", destination: "/" },
-  { linkName: "Manage Users", destination: "/manage" },
-  { linkName: "My Projects", destination: "/projects" },
-  { linkName: "My Board", destination: "/board" },
+  { linkName: "Home", destination: "home" },
+  { linkName: "Manage Users", destination: "manage" },
+  { linkName: "My Projects", destination: "projects" },
+  { linkName: "My Board", destination: "board" },
 ];
-const settings = ["Profile", "Account", "Logout"];
+const settings = ["Account", "Logout"];
 
 const Navbar = () => {
   const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(
@@ -65,8 +65,8 @@ const Navbar = () => {
             <Typography
               variant="h6"
               noWrap
-              component="a"
-              href="/"
+              component={Link}
+              to="home"
               sx={{
                 display: { xs: "none", md: "flex" },
                 fontFamily: "monospace",

@@ -3,31 +3,26 @@ import { Container, Box, Toolbar } from "@mui/material";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Dashboard, Board, ManageUsers, Projects, Auth } from "./Pages/";
-import { Navbar, ProjectBoard } from "./Components/";
+import { ProjectBoard } from "./Components/";
+import { HomeLayout, ProtectedLayout } from "./Layouts";
 
 const App = () => {
   return (
     <Container maxWidth={false}>
-      <Navbar />
-      <Box
-        component="main"
-        sx={{
-          flexGrow: 1,
-          p: 3,
-          minHeight: "100vh",
-        }}
-      >
-        <Toolbar />
-        <Routes>
-          <Route path="/auth" element={<Auth />} />
-          <Route path="/" element={<Navigate to="/home" replace />} />
-          <Route path="/home" element={<Dashboard />} />
-          <Route path="/manage" element={<ManageUsers />} />
-          <Route path="/projects" element={<Projects />} />
-          <Route path="/projects/:id" element={<ProjectBoard />} />
-          <Route path="/board" element={<Board />} />
-        </Routes>
-      </Box>
+      <Routes>
+        <Route element={<HomeLayout />}>
+          <Route path="/" element={<Navigate to="/login" replace />} />
+          <Route path="/login" element={<Auth />} />
+        </Route>
+
+        <Route path="/dashboard" element={<ProtectedLayout />}>
+          <Route path="home" element={<Dashboard />} />
+          <Route path="manage" element={<ManageUsers />} />
+          <Route path="projects" element={<Projects />} />
+          <Route path="projects/:id" element={<ProjectBoard />} />
+          <Route path="board" element={<Board />} />
+        </Route>
+      </Routes>
     </Container>
   );
 };

@@ -21,10 +21,9 @@ const createTickets = (amount: number): TicketType[] => {
         "Issue",
         undefined,
       ]),
-      createdAt: faker.date.between(
-        "2020-01-01T00:00:00.000Z",
-        "2030-01-01T00:00:00.000Z"
-      ),
+      createdAt: faker.date
+        .between("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z")
+        .toUTCString(),
     },
   ];
 
@@ -47,10 +46,9 @@ const createTickets = (amount: number): TicketType[] => {
         "Issue",
         undefined,
       ]),
-      createdAt: faker.date.between(
-        "2020-01-01T00:00:00.000Z",
-        "2030-01-01T00:00:00.000Z"
-      ),
+      createdAt: faker.date
+        .between("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z")
+        .toUTCString(),
     });
   }
   return tickets;
@@ -67,17 +65,15 @@ const fakeProject = (): ProjectType => {
       email: faker.internet.email(),
       password: "password",
       role: "manager",
-      createdAt: faker.date.between(
-        "2020-01-01T00:00:00.000Z",
-        "2030-01-01T00:00:00.000Z"
-      ),
+      createdAt: faker.date
+        .between("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z")
+        .toUTCString(),
       projects: "Test Project",
     },
     users: [],
-    createdAt: faker.date.between(
-      "2020-01-01T00:00:00.000Z",
-      "2030-01-01T00:00:00.000Z"
-    ),
+    createdAt: faker.date
+      .between("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z")
+      .toUTCString(),
     tickets: createTickets(10),
   };
   return fakeProject;

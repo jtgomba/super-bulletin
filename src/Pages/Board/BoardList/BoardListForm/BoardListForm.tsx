@@ -19,7 +19,7 @@ const BoardListForm = () => {
     priority: undefined,
     status: undefined,
     type: undefined,
-    createdAt: new Date(),
+    createdAt: "",
   };
 
   const handleAddTicket = () => {

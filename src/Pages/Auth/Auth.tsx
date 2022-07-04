@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -10,8 +10,11 @@ import {
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { useNavigate } from "react-router-dom";
 
 import Input from "./Input";
+import { useAppDispatch, useAppSelector } from "../../Utils/hooks";
+import { login, selectAuth } from "../../Utils/reducers/authReducer";
 
 const theme = createTheme();
 
@@ -24,6 +27,9 @@ const initialState = {
 };
 
 const Auth = () => {
+  let navigate = useNavigate();
+  const dispatch = useAppDispatch();
+  const user = useAppSelector(selectAuth);
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialState);
@@ -34,6 +40,9 @@ const Auth = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    dispatch(
+      login({ value: { email: formData.email, password: formData.password } })
+    );
   };
 
   const handleChange = (
@@ -46,12 +55,17 @@ const Auth = () => {
     setIsSignup((prevIsSignup) => !prevIsSignup);
     setShowPassword(false);
   };
-
+  /* 
+  useEffect(() => {
+    if (user) {
+      navigate("/", { replace: true });
+    }
+  }, [navigate, user]);
+ */
   return (
-    <Container component="main" maxWidth="xs">
+    <Container maxWidth="xs">
       <Paper
         sx={{
-          marginTop: theme.spacing(8),
           display: "flex",
           flexDirection: "column",
           alignItems: "center",

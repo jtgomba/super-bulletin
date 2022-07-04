@@ -4,7 +4,7 @@ export type UserType = {
   email: string;
   password: string;
   role: "user" | "manager" | "admin";
-  readonly createdAt: Date;
+  readonly createdAt: string;
   projects?: string | string[];
 };
 
@@ -14,7 +14,7 @@ export type ProjectType = {
   description: string;
   manager: UserType;
   users: UserType[];
-  readonly createdAt: Date;
+  readonly createdAt: string;
   tickets: TicketType[];
 };
 
@@ -42,7 +42,7 @@ export type TicketType = {
   priority: "Low" | "Normal" | "Medium" | "High" | undefined;
   status: "Open" | "Closed" | undefined;
   type: "Task" | "Announcement" | "Issue" | undefined;
-  readonly createdAt: Date;
+  readonly createdAt: string;
   updatedAt?: Date;
   comments?: CommentInterface[];
   history?: HistoryItemInterface[];
