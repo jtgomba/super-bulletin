@@ -4,7 +4,6 @@ import {
   Grid,
   InputAdornment,
   IconButton,
-  InputProps,
   OutlinedInputProps,
 } from "@mui/material";
 
@@ -16,7 +15,7 @@ interface MyInputInterface extends OutlinedInputProps {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ): void;
   half: boolean;
-  handleShowPassword(): void;
+  handleShowPassword?(): void;
 }
 
 const Input = ({
@@ -39,7 +38,7 @@ const Input = ({
         label={label}
         autoFocus={autoFocus}
         type={type}
-        /*         InputProps={
+        InputProps={
           name === "password"
             ? {
                 endAdornment: (
@@ -54,8 +53,8 @@ const Input = ({
                   </InputAdornment>
                 ),
               }
-            : null
-        } */
+            : undefined
+        }
       />
     </Grid>
   );

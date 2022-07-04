@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import {
   Avatar,
   Button,
@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { useNavigate } from "react-router-dom";
 
 import Input from "./Input";
 
@@ -25,8 +24,6 @@ const initialState = {
 };
 
 const Auth = () => {
-  let navigate = useNavigate();
-
   const [showPassword, setShowPassword] = useState(false);
   const [isSignup, setIsSignup] = useState(false);
   const [formData, setFormData] = useState(initialState);
@@ -60,12 +57,14 @@ const Auth = () => {
           alignItems: "center",
           padding: theme.spacing(2),
         }}
-        elevation={3}>
+        elevation={3}
+      >
         <Avatar
           sx={{
             margin: theme.spacing(1),
             backgroundColor: theme.palette.secondary.main,
-          }}>
+          }}
+        >
           <LockOutlinedIcon />
         </Avatar>
         <Typography variant="h5">{isSignup ? "Sign Up" : "Sign In"}</Typography>
@@ -75,7 +74,8 @@ const Auth = () => {
           sx={{
             width: "100%", // Fix IE 11 issue.
             marginTop: theme.spacing(3),
-          }}>
+          }}
+        >
           <Grid container spacing={2}>
             {isSignup && (
               <>
@@ -86,9 +86,6 @@ const Auth = () => {
                   autoFocus
                   half
                   type="text"
-                  handleShowPassword={function (): void {
-                    throw new Error("Function not implemented.");
-                  }}
                 />
                 <Input
                   name="lastName"
@@ -110,9 +107,6 @@ const Auth = () => {
               autoFocus
               type="email"
               half={false}
-              handleShowPassword={function (): void {
-                throw new Error("Function not implemented.");
-              }}
             />
             <Input
               name="password"
@@ -129,9 +123,6 @@ const Auth = () => {
                 handleChange={handleChange}
                 type="password"
                 half={false}
-                handleShowPassword={function (): void {
-                  throw new Error("Function not implemented.");
-                }}
               />
             )}
           </Grid>
@@ -140,7 +131,8 @@ const Auth = () => {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{ margin: theme.spacing(3, 0, 2) }}>
+            sx={{ margin: theme.spacing(3, 0, 2) }}
+          >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <Grid container justifyContent="flex-end">
