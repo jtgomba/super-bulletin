@@ -6,7 +6,7 @@ import BoardNav from "./BoardNav/BoardNav";
 import BoardListForm from "./BoardList/BoardListForm/BoardListForm";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../Utils/hooks";
-import { selectProjects } from "../../Utils/reducers/projectsReducer";
+import { selectProjects } from "../../Utils/reducers/projectsSlice";
 import { TicketType } from "../../Types/types";
 
 const Board = () => {
@@ -25,8 +25,7 @@ const Board = () => {
         direction="row"
         justifyContent="flex-start"
         alignItems="flex-start"
-        spacing={1}
-      >
+        spacing={1}>
         {listNames.map((name) => {
           const tickets: TicketType[] = [];
           project.tickets.forEach((ticket) => {

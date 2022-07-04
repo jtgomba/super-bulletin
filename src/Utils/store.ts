@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ticketsReducer from "./reducers/ticketsReducer";
-import projectsReducer from "./reducers/projectsReducer";
-import authReducer from "./reducers/authReducer";
+import ticketsReducer from "./reducers/ticketsSlice";
+import projectsReducer from "./reducers/projectsSlice";
+import authReducer from "./reducers/authSlice";
 import { api } from "./reducers/fireAuthReducer";
 
 export const store = configureStore({

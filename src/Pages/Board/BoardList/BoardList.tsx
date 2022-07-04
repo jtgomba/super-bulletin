@@ -4,7 +4,7 @@ import { grey } from "@mui/material/colors";
 
 import BoardCard from "../BoardCard/BoardCard";
 import { useAppSelector } from "../../../Utils/hooks";
-import { selectTickets } from "../../../Utils/reducers/ticketsReducer";
+import { selectTickets } from "../../../Utils/reducers/ticketsSlice";
 import BoardListForm from "./BoardListForm/BoardListForm";
 
 const BoardList = () => {
@@ -18,8 +18,7 @@ const BoardList = () => {
         width: 300,
         borderRadius: 1,
       }}
-      alignItems="column"
-    >
+      alignItems="column">
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography gutterBottom component="p" variant="h6">
           List Name

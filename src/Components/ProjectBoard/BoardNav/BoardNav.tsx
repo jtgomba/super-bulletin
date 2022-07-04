@@ -3,7 +3,7 @@ import { Box, Toolbar, Typography, Button } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useAppSelector } from "../../../Utils/hooks";
-import { selectProjects } from "../../../Utils/reducers/projectsReducer";
+import { selectProjects } from "../../../Utils/reducers/projectsSlice";
 
 interface BoardNavInterface {
   id: string | undefined;
@@ -20,8 +20,7 @@ const BoardNav = ({ id }: BoardNavInterface) => {
         sx={{
           boxShadow: "0px 0px 1px 1px  rgba(0, 0, 0, 0.2)",
           borderRadius: "3px",
-        }}
-      >
+        }}>
         <DashboardIcon color="disabled" sx={{ mr: 2 }} fontSize="large" />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
           {project.projectName}
@@ -29,8 +28,7 @@ const BoardNav = ({ id }: BoardNavInterface) => {
         <Button
           color="inherit"
           endIcon={<MoreVertIcon />}
-          sx={{ display: { xs: "none", sm: "flex" } }}
-        >
+          sx={{ display: { xs: "none", sm: "flex" } }}>
           Show Menu
         </Button>
         <Button

@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Navigate, useOutlet } from "react-router-dom";
 import { Navbar } from "../Components";
 import { useAppSelector } from "../Utils/hooks";
-import { selectAuth } from "../Utils/reducers/authReducer";
+import { selectAuth } from "../Utils/reducers/authSlice";
 
 const ProtectedLayout = () => {
   const user = useAppSelector(selectAuth);
@@ -22,8 +22,7 @@ const ProtectedLayout = () => {
           flexGrow: 1,
           p: 3,
           minHeight: "100vh",
-        }}
-      >
+        }}>
         <Toolbar />
         {outlet}
       </Box>

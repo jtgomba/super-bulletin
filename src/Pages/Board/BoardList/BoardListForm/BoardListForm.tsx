@@ -5,7 +5,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 import { TicketType } from "../../../../Types/types";
 import { useAppDispatch } from "../../../../Utils/hooks";
-import { addTicket } from "../../../../Utils/reducers/ticketsReducer";
+import { addTicket } from "../../../../Utils/reducers/ticketsSlice";
 
 const BoardListForm = () => {
   const dispatch = useAppDispatch();
@@ -34,8 +34,7 @@ const BoardListForm = () => {
         <Button
           startIcon={<AddIcon />}
           color="inherit"
-          onClick={() => setShowForm(!showForm)}
-        >
+          onClick={() => setShowForm(!showForm)}>
           Add another card
         </Button>
       ) : (

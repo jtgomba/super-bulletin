@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { AccountCircle } from "@mui/icons-material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
 import { useAppDispatch } from "../../Utils/hooks";
-import { logout } from "../../Utils/reducers/authReducer";
+import { logout } from "../../Utils/reducers/authSlice";
 
 const pages = [
   { linkName: "Home", destination: "home" },
@@ -58,8 +58,7 @@ const Navbar = () => {
         zIndex: (theme) => theme.zIndex.drawer + 1,
         boxShadow: "0px 0px 1px 1px  rgba(0, 0, 0, 0.2)",
       }}
-      color="default"
-    >
+      color="default">
       <Container maxWidth="xl">
         <Toolbar disableGutters sx={{ justifyContent: "space-evenly" }}>
           <Box sx={{ display: "flex" }}>
@@ -78,24 +77,21 @@ const Navbar = () => {
                 letterSpacing: ".3rem",
                 color: "inherit",
                 textDecoration: "none",
-              }}
-            >
+              }}>
               Super Bulletin
             </Typography>
           </Box>
           <Box
             sx={{
               display: { xs: "none", md: "flex" },
-            }}
-          >
+            }}>
             {pages.map((page) => (
               <Button
                 key={page.linkName}
                 onClick={handleCloseNavMenu}
                 component={Link}
                 to={page.destination}
-                sx={{ my: 2, color: "inherit", display: "block" }}
-              >
+                sx={{ my: 2, color: "inherit", display: "block" }}>
                 {page.linkName}
               </Button>
             ))}
@@ -108,8 +104,7 @@ const Navbar = () => {
               aria-controls="menu-appbar"
               aria-haspopup="true"
               onClick={handleOpenNavMenu}
-              color="inherit"
-            >
+              color="inherit">
               <MenuIcon />
             </IconButton>
             <Menu
@@ -128,15 +123,13 @@ const Navbar = () => {
               onClose={handleCloseNavMenu}
               sx={{
                 display: { xs: "block", md: "none" },
-              }}
-            >
+              }}>
               {pages.map((page) => (
                 <MenuItem
                   key={page.linkName}
                   onClick={handleCloseNavMenu}
                   component={Link}
-                  to={page.destination}
-                >
+                  to={page.destination}>
                   <Typography textAlign="center" sx={{ color: "inherit" }}>
                     {page.linkName}
                   </Typography>
@@ -161,14 +154,12 @@ const Navbar = () => {
               letterSpacing: ".3rem",
               color: "inherit",
               textDecoration: "none",
-            }}
-          >
+            }}>
             Class Board
           </Typography>
 
           <Box
-            sx={{ flexGrow: 0.2, display: "flex", justifyContent: "flex-end" }}
-          >
+            sx={{ flexGrow: 0.2, display: "flex", justifyContent: "flex-end" }}>
             <Tooltip title="Open settings">
               <IconButton
                 onClick={handleOpenUserMenu}
@@ -176,8 +167,7 @@ const Navbar = () => {
                 size="large"
                 aria-label="account of current user"
                 aria-controls="menu-appbar"
-                aria-haspopup="true"
-              >
+                aria-haspopup="true">
                 <AccountCircle />
               </IconButton>
             </Tooltip>
@@ -195,8 +185,7 @@ const Navbar = () => {
                 horizontal: "right",
               }}
               open={Boolean(anchorElUser)}
-              onClose={handleCloseUserMenu}
-            >
+              onClose={handleCloseUserMenu}>
               <MenuItem onClick={handleCloseUserMenu}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>

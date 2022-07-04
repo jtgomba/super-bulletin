@@ -5,7 +5,7 @@ import { grey } from "@mui/material/colors";
 import BoardCard from "../BoardCard/BoardCard";
 import BoardListForm from "./BoardListForm/BoardListForm";
 import { useAppSelector } from "../../../Utils/hooks";
-import { selectProjects } from "../../../Utils/reducers/projectsReducer";
+import { selectProjects } from "../../../Utils/reducers/projectsSlice";
 
 interface BoardListInterface {
   priority: string;
@@ -25,8 +25,7 @@ const BoardList = ({ priority, id }: BoardListInterface) => {
         width: 300,
         borderRadius: 1,
       }}
-      alignItems="column"
-    >
+      alignItems="column">
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography gutterBottom component="p" variant="h6">
           {priority}
@@ -43,8 +42,7 @@ const BoardList = ({ priority, id }: BoardListInterface) => {
           maxHeight: "65vh",
           overflow: "hidden auto",
           "&:last-child": { dispaly: "none" },
-        }}
-      >
+        }}>
         {tickets &&
           tickets.map((ticket) => (
             <BoardCard

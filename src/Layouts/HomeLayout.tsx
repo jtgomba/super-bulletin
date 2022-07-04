@@ -1,7 +1,7 @@
 import { Box } from "@mui/material";
 import { Navigate, useOutlet } from "react-router-dom";
 import { useAppSelector } from "../Utils/hooks";
-import { selectAuth } from "../Utils/reducers/authReducer";
+import { selectAuth } from "../Utils/reducers/authSlice";
 
 const HomeLayout = () => {
   const user = useAppSelector(selectAuth);
@@ -19,8 +19,7 @@ const HomeLayout = () => {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
-      }}
-    >
+      }}>
       {outlet}
     </Box>
   );

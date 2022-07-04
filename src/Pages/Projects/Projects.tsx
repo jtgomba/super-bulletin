@@ -11,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 import { useAppSelector } from "../../Utils/hooks";
-import { selectProjects } from "../../Utils/reducers/projectsReducer";
+import { selectProjects } from "../../Utils/reducers/projectsSlice";
 
 const Projects = () => {
   let navigate = useNavigate();
@@ -43,8 +43,7 @@ const Projects = () => {
                   cursor: "pointer",
                 }}
                 onClick={() => navigate(`${project.id}`, { replace: true })}
-                hover
-              >
+                hover>
                 <TableCell component="th" scope="row">
                   {project.projectName}
                 </TableCell>
