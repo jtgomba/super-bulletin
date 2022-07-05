@@ -1,19 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import { User } from "firebase/auth";
+import { AuthInterface } from "../../Types/types";
 
-interface AuthInterface {
-  value: {
-    email?: string;
-    password?: string;
-  };
-}
 const initialState: AuthInterface = {
-  value: {
-    email: "",
-    password: "",
-  },
+  displayName: "",
+  email: "",
+  uid: "",
 };
 
 export const authSlice = createSlice({
@@ -21,20 +14,22 @@ export const authSlice = createSlice({
   // `createSlice` will infer the state type from the `initialState` argument
   initialState,
   reducers: {
-    login: (state, action: PayloadAction<AuthInterface>) => {
-      state.value.email = action.payload.value.email;
-      state.value.password = action.payload.value.password;
+    setUser: (state, action: PayloadAction<AuthInterface>) => {
+      state.displayName = action.payload.displayName;
+      state.email = action.payload.email;
+      state.uid = action.payload.uid;
     },
-    logout: (state) => {
-      state.value.email = "";
-      state.value.password = "";
+    logoutUser: (state) => {
+      state.displayName = "";
+      state.email = "";
+      state.uid = "";
     },
   },
 });
 
-export const { login, logout } = authSlice.actions;
+export const { setUser, logoutUser } = authSlice.actions;
 
 // Other code such as selectors can use the imported `RootState` type
-export const selectAuth = (state: RootState) => state.auth.value;
+export const selectAuth = (state: RootState) => state.auth;
 
 export default authSlice.reducer;

@@ -7,7 +7,7 @@ const HomeLayout = () => {
   const user = useAppSelector(selectAuth);
   const outlet = useOutlet();
 
-  if (user.email) {
+  if (user.uid) {
     return <Navigate to="/dashboard/home" replace />;
   }
 

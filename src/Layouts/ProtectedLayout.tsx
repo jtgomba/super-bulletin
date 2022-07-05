@@ -9,7 +9,7 @@ const ProtectedLayout = () => {
   const user = useAppSelector(selectAuth);
   const outlet = useOutlet();
 
-  if (!user.email) {
+  if (!user.uid) {
     return <Navigate to="/login" />;
   }
 

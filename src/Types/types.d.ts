@@ -47,3 +47,9 @@ export type TicketType = {
   comments?: CommentInterface[];
   history?: HistoryItemInterface[];
 };
+
+export interface AuthInterface {
+  displayName: string;
+  email: string;
+  uid: string;
+}

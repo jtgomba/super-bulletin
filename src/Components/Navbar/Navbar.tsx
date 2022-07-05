@@ -16,7 +16,9 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { AccountCircle } from "@mui/icons-material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
 import { useAppDispatch } from "../../Utils/hooks";
-import { logout } from "../../Utils/reducers/authSlice";
+import { logoutUser } from "../../Utils/reducers/authSlice";
+import { signOut } from "firebase/auth";
+import { auth } from "../../Utils/firebaseConfig";
 
 const pages = [
   { linkName: "Home", destination: "home" },
@@ -48,7 +50,8 @@ const Navbar = () => {
 
   const handleCloseUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(null);
-    dispatch(logout());
+    signOut(auth);
+    dispatch(logoutUser());
   };
 
   return (

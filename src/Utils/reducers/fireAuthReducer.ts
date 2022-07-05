@@ -1,28 +1,47 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
-import { signInWithEmailAndPassword } from "firebase/auth";
+import {
+  browserSessionPersistence,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 
-import { User, UserCredential } from "firebase/auth";
+import { UserCredential } from "firebase/auth";
+import { AuthInterface } from "../../Types/types";
 import { auth } from "../firebaseConfig";
+
+interface UserInterface {
+  displayName: string;
+  email: string;
+  uid: string;
+}
 
 export const api = createApi({
   baseQuery: fakeBaseQuery(),
   endpoints: (build) => ({
-    //              ResultType  QueryArg
-    //                    v       v
-    loginUser: build.mutation<string, { email: string; password: string }>({
-      // inferred as `string` from the `QueryArg` type
-      //         v
-      queryFn: async (arg, queryApi, extraOptions) => {
+    loginUser: build.mutation<
+      UserInterface,
+      { email: string; password: string }
+    >({
+      queryFn: async (arg) => {
         try {
           const result: UserCredential = await signInWithEmailAndPassword(
             auth,
             arg.email,
             arg.password
           );
-          return { data: result.user.uid };
+          return {
+            data: {
+              displayName: result.user.displayName,
+              email: result.user.email,
+              uid: result.user.uid,
+            } as AuthInterface,
+          };
         } catch (e) {
           return { error: "could not log in" };
         }
+      },
+      async onCacheEntryAdded(_arg, { cacheDataLoaded }) {
+        await cacheDataLoaded;
+        await auth.setPersistence(browserSessionPersistence);
       },
     }),
   }),

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -10,12 +10,14 @@ import {
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
+import { onAuthStateChanged } from "firebase/auth";
 
 import Input from "./Input";
 import { useAppDispatch } from "../../Utils/hooks";
-import { login } from "../../Utils/reducers/authSlice";
+import { logoutUser, setUser } from "../../Utils/reducers/authSlice";
 import { useLoginUserMutation } from "../../Utils/reducers/fireAuthReducer";
 import { auth } from "../../Utils/firebaseConfig";
+import { AuthInterface } from "../../Types/types";
 
 const theme = createTheme();
 
@@ -28,7 +30,7 @@ const initialState = {
 };
 
 const Auth = () => {
-  const [loginUser, { isError, isLoading, isSuccess }] = useLoginUserMutation();
+  const [loginUser] = useLoginUserMutation();
 
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -41,15 +43,32 @@ const Auth = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    /*     dispatch(
-      login({ value: { email: formData.email, password: formData.password } })
-    ); */
-    await loginUser({
+    const user = await loginUser({
       email: formData.email,
       password: formData.password,
     }).unwrap();
-    console.log(auth.currentUser);
+    dispatch(setUser(user));
   };
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        dispatch(
+          setUser({
+            displayName: user.displayName,
+            email: user.email,
+            uid: user.uid,
+          } as AuthInterface)
+        );
+      } else {
+        dispatch(logoutUser());
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
