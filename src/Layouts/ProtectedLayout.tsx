@@ -1,5 +1,4 @@
 import { Box, Toolbar } from "@mui/material";
-import { useEffect } from "react";
 import { Navigate, useOutlet } from "react-router-dom";
 import { Navbar } from "../Components";
 import { useAppSelector } from "../Utils/hooks";

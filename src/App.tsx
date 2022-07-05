@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Box, Toolbar } from "@mui/material";
+import { Container } from "@mui/material";
 import { Routes, Route, Navigate } from "react-router-dom";
 
 import { Dashboard, Board, ManageUsers, Projects, Auth } from "./Pages/";
@@ -33,7 +33,7 @@ const App = () => {
     return () => {
       unsubscribe();
     };
-  }, []);
+  }, [dispatch]);
 
   return (
     <Container maxWidth={false}>
