@@ -7,6 +7,7 @@ const initialState: AuthInterface = {
   displayName: "",
   email: "",
   uid: "",
+  authenticated: "checking",
 };
 
 export const authSlice = createSlice({
@@ -18,11 +19,13 @@ export const authSlice = createSlice({
       state.displayName = action.payload.displayName;
       state.email = action.payload.email;
       state.uid = action.payload.uid;
+      state.authenticated = action.payload.authenticated;
     },
     logoutUser: (state) => {
       state.displayName = "";
       state.email = "";
       state.uid = "";
+      state.authenticated = "unauthenticated";
     },
   },
 });

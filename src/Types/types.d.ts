@@ -52,4 +52,5 @@ export interface AuthInterface {
   displayName: string;
   email: string;
   uid: string;
+  authenticated: "authenticated" | "checking" | "unauthenticated";
 }

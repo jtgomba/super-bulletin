@@ -9,7 +9,7 @@ const ProtectedLayout = () => {
   const user = useAppSelector(selectAuth);
   const outlet = useOutlet();
 
-  if (!user.uid) {
+  if (user.authenticated === "unauthenticated") {
     return <Navigate to="/login" />;
   }
 
@@ -22,8 +22,7 @@ const ProtectedLayout = () => {
           flexGrow: 1,
           p: 3,
           minHeight: "100vh",
-        }}
-      >
+        }}>
         <Toolbar />
         {outlet}
       </Box>

@@ -22,6 +22,7 @@ const App = () => {
             displayName: user.displayName,
             email: user.email,
             uid: user.uid,
+            authenticated: "authenticated",
           } as AuthInterface)
         );
       } else {
