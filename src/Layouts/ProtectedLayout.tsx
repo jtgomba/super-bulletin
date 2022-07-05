@@ -22,7 +22,8 @@ const ProtectedLayout = () => {
           flexGrow: 1,
           p: 3,
           minHeight: "100vh",
-        }}>
+        }}
+      >
         <Toolbar />
         {outlet}
       </Box>

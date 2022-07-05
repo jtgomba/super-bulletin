@@ -10,18 +10,11 @@ import {
 } from "@mui/material";
 import { createTheme } from "@mui/material/styles";
 import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
-import { onAuthStateChanged } from "firebase/auth";
 
 import Input from "./Input";
 import { useAppDispatch, useAppSelector } from "../../Utils/hooks";
-import {
-  logoutUser,
-  selectAuth,
-  setUser,
-} from "../../Utils/reducers/authSlice";
+import { selectAuth, setUser } from "../../Utils/reducers/authSlice";
 import { useLoginUserMutation } from "../../Utils/reducers/fireAuthReducer";
-import { auth } from "../../Utils/firebaseConfig";
-import { AuthInterface } from "../../Types/types";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const theme = createTheme();
@@ -57,26 +50,6 @@ const Auth = () => {
     }).unwrap();
     dispatch(setUser(user));
   };
-
-  useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        dispatch(
-          setUser({
-            displayName: user.displayName,
-            email: user.email,
-            uid: user.uid,
-          } as AuthInterface)
-        );
-      } else {
-        dispatch(logoutUser());
-      }
-    });
-
-    return () => {
-      unsubscribe();
-    };
-  }, []);
 
   useEffect(() => {
     if (user.uid) {
