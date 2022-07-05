@@ -28,6 +28,7 @@ export const api = createApi({
             arg.email,
             arg.password
           );
+          await auth.setPersistence(browserSessionPersistence);
           return {
             data: {
               displayName: result.user.displayName,
@@ -38,10 +39,6 @@ export const api = createApi({
         } catch (e) {
           return { error: "could not log in" };
         }
-      },
-      async onCacheEntryAdded(_arg, { cacheDataLoaded }) {
-        await cacheDataLoaded;
-        await auth.setPersistence(browserSessionPersistence);
       },
     }),
   }),
