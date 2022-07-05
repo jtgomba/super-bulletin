@@ -7,10 +7,6 @@ const HomeLayout = () => {
   const user = useAppSelector(selectAuth);
   const outlet = useOutlet();
 
-  if (user.uid) {
-    return <Navigate to="/dashboard/home" replace />;
-  }
-
   return (
     <Box
       component="main"
@@ -19,7 +15,8 @@ const HomeLayout = () => {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "100vh",
-      }}>
+      }}
+    >
       {outlet}
     </Box>
   );

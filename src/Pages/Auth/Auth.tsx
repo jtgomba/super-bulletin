@@ -13,11 +13,16 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import { onAuthStateChanged } from "firebase/auth";
 
 import Input from "./Input";
-import { useAppDispatch } from "../../Utils/hooks";
-import { logoutUser, setUser } from "../../Utils/reducers/authSlice";
+import { useAppDispatch, useAppSelector } from "../../Utils/hooks";
+import {
+  logoutUser,
+  selectAuth,
+  setUser,
+} from "../../Utils/reducers/authSlice";
 import { useLoginUserMutation } from "../../Utils/reducers/fireAuthReducer";
 import { auth } from "../../Utils/firebaseConfig";
 import { AuthInterface } from "../../Types/types";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const theme = createTheme();
 
@@ -30,7 +35,10 @@ const initialState = {
 };
 
 const Auth = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [loginUser] = useLoginUserMutation();
+  const user = useAppSelector(selectAuth);
 
   const dispatch = useAppDispatch();
   const [showPassword, setShowPassword] = useState(false);
@@ -70,6 +78,12 @@ const Auth = () => {
     };
   }, []);
 
+  useEffect(() => {
+    if (user.uid) {
+      navigate("/dashboard/home", { replace: true });
+    }
+  }, [location, navigate, user.uid]);
+
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
@@ -90,12 +104,14 @@ const Auth = () => {
           alignItems: "center",
           padding: theme.spacing(2),
         }}
-        elevation={3}>
+        elevation={3}
+      >
         <Avatar
           sx={{
             margin: theme.spacing(1),
             backgroundColor: theme.palette.secondary.main,
-          }}>
+          }}
+        >
           <LockOutlinedIcon />
         </Avatar>
         <Typography variant="h5">{isSignup ? "Sign Up" : "Sign In"}</Typography>
@@ -105,7 +121,8 @@ const Auth = () => {
           sx={{
             width: "100%", // Fix IE 11 issue.
             marginTop: theme.spacing(3),
-          }}>
+          }}
+        >
           <Grid container spacing={2}>
             {isSignup && (
               <>
@@ -161,7 +178,8 @@ const Auth = () => {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{ margin: theme.spacing(3, 0, 2) }}>
+            sx={{ margin: theme.spacing(3, 0, 2) }}
+          >
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <Grid container justifyContent="flex-end">
