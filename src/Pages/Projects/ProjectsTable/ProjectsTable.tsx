@@ -56,7 +56,7 @@ const ProjectsTable = () => {
                   {project.projectName}
                 </TableCell>
                 <TableCell align="right">{project.description}</TableCell>
-
+                <TableCell align="right">{project.manager}</TableCell>
                 <TableCell align="right">{project.tickets?.length}</TableCell>
                 <TableCell align="right">{project.users?.length}</TableCell>
               </TableRow>
