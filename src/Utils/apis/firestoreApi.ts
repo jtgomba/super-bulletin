@@ -1,12 +1,11 @@
 import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
-  doc,
   addDoc,
-  setDoc,
   DocumentData,
   QueryDocumentSnapshot,
   SnapshotOptions,
   collection,
+  serverTimestamp,
 } from "firebase/firestore";
 import { ProjectType, ProjectClass } from "../../Types/types";
 import { db } from "../firebaseConfig";
@@ -18,7 +17,7 @@ const projectConverter = {
       description: project.description,
       manager: project.manager,
       users: project.users,
-      createdAt: project.createdAt,
+      createdAt: serverTimestamp(),
       tickets: project.tickets,
     };
   },

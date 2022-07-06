@@ -22,8 +22,8 @@ import { auth } from "../../Utils/firebaseConfig";
 
 const pages = [
   { linkName: "Home", destination: "home" },
-  { linkName: "Manage Users", destination: "manage" },
-  { linkName: "My Projects", destination: "projects" },
+  { linkName: "Users", destination: "manage" },
+  { linkName: "Projects", destination: "projects" },
   { linkName: "My Board", destination: "board" },
 ];
 

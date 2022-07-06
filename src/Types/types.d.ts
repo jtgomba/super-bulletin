@@ -2,7 +2,6 @@ export type UserType = {
   id: string;
   name: string;
   email: string;
-  password: string;
   role: "user" | "manager" | "admin";
   readonly createdAt: string;
   projects?: string | string[];

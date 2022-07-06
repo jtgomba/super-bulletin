@@ -7,6 +7,7 @@ import {
   Box,
   Divider,
   Button,
+  Typography,
 } from "@mui/material/";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
 
@@ -64,40 +65,44 @@ const Form = () => {
 
   return (
     <Box component="form" sx={{ display: "flex", flexDirection: "column" }}>
-      <FormControl variant="filled" sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-multiple-name-label">
+      <Typography variant="h5" gutterBottom>
+        Assign users to projects
+      </Typography>
+      <FormControl
+        variant="outlined"
+        sx={{ m: 1, width: 300, backgroundColor: "white" }}>
+        <InputLabel htmlFor="outlined-select-users">
           Select one or more users
         </InputLabel>
         <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
+          id="outlined-select-users"
+          label="Select one or more users"
           multiple
           value={personName}
           onChange={handleChange}
-          MenuProps={MenuProps}
-        >
+          MenuProps={MenuProps}>
           {names.map((name) => (
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, personName, theme)}
-            >
+              style={getStyles(name, personName, theme)}>
               {name}
             </MenuItem>
           ))}
         </Select>
       </FormControl>
       <Divider sx={{ margin: "20px 0px" }} />
-      <FormControl variant="filled" sx={{ m: 1, width: 300 }}>
-        <InputLabel id="demo-simple-select-filled-label">
+      <FormControl
+        variant="outlined"
+        sx={{ m: 1, width: 300, backgroundColor: "white" }}>
+        <InputLabel htmlFor="outlined-select-projects">
           Select project to assign to
         </InputLabel>
         <Select
-          labelId="demo-simple-select-filled-label"
-          id="demo-simple-select-filled"
+          id="outlined-select-projects"
+          label="Select a proect to assign to"
           value={age}
-          onChange={handleAgeChange}
-        >
+          onChange={handleAgeChange}>
           <MenuItem value="">
             <em>None</em>
           </MenuItem>

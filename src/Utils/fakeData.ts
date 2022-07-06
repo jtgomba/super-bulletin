@@ -63,7 +63,6 @@ const fakeProject = (): ProjectType => {
       id: faker.random.alpha(10),
       name: faker.name.findName(),
       email: faker.internet.email(),
-      password: "password",
       role: "manager",
       createdAt: faker.date
         .between("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z")
