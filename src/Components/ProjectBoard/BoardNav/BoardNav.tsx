@@ -10,9 +10,9 @@ interface BoardNavInterface {
 }
 
 const BoardNav = ({ id }: BoardNavInterface) => {
-  const project = useAppSelector(selectProjects).filter(
+  /*   const project = useAppSelector(selectProjects).filter(
     (project) => project.id === id
-  )[0];
+  )[0]; */
 
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 3 }}>
@@ -23,7 +23,7 @@ const BoardNav = ({ id }: BoardNavInterface) => {
         }}>
         <DashboardIcon color="disabled" sx={{ mr: 2 }} fontSize="large" />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {project.projectName}
+          {/*           {project.projectName} */}
         </Typography>
         <Button
           color="inherit"

@@ -1,15 +1,14 @@
-import { createApi, fakeBaseQuery } from "@reduxjs/toolkit/query/react";
 import {
   browserSessionPersistence,
   signInWithEmailAndPassword,
 } from "firebase/auth";
 
+import baseApi from "./baseApi";
 import { UserCredential } from "firebase/auth";
 import { AuthInterface } from "../../Types/types";
 import { auth } from "../firebaseConfig";
 
-export const api = createApi({
-  baseQuery: fakeBaseQuery(),
+export const fireAuthApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     loginUser: build.mutation<
       AuthInterface,
@@ -39,4 +38,4 @@ export const api = createApi({
   }),
 });
 
-export const { useLoginUserMutation } = api;
+export const { useLoginUserMutation } = fireAuthApi;

@@ -1,10 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
 import type { RootState } from "../store";
-import fakeProject from "../fakeData";
 
-const project = fakeProject();
 const initialState = {
-  value: [project],
+  value: [],
 };
 
 export const counterSlice = createSlice({

@@ -59,16 +59,7 @@ const fakeProject = (): ProjectType => {
     id: faker.random.alpha(10),
     projectName: "Test Project",
     description: faker.lorem.sentence(5),
-    manager: {
-      id: faker.random.alpha(10),
-      name: faker.name.findName(),
-      email: faker.internet.email(),
-      role: "manager",
-      createdAt: faker.date
-        .between("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z")
-        .toUTCString(),
-      projects: "Test Project",
-    },
+    manager: "",
     users: [],
     createdAt: faker.date
       .between("2020-01-01T00:00:00.000Z", "2030-01-01T00:00:00.000Z")

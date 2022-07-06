@@ -13,9 +13,9 @@ interface BoardListInterface {
 }
 
 const BoardList = ({ priority, id }: BoardListInterface) => {
-  const tickets = useAppSelector(selectProjects)
+  /*   const tickets = useAppSelector(selectProjects)
     .filter((project) => project.id === id)[0]
-    .tickets?.filter((ticket) => ticket.priority === priority);
+    .tickets?.filter((ticket) => ticket.priority === priority); */
 
   return (
     <Stack
@@ -43,7 +43,7 @@ const BoardList = ({ priority, id }: BoardListInterface) => {
           overflow: "hidden auto",
           "&:last-child": { dispaly: "none" },
         }}>
-        {tickets &&
+        {/*         {tickets &&
           tickets.map((ticket) => (
             <BoardCard
               key={ticket.id}
@@ -55,7 +55,7 @@ const BoardList = ({ priority, id }: BoardListInterface) => {
               type={ticket.type}
               createdAt={ticket.createdAt}
             />
-          ))}
+          ))} */}
       </Stack>
       <BoardListForm />
     </Stack>

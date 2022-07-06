@@ -2,17 +2,17 @@ import { configureStore } from "@reduxjs/toolkit";
 import ticketsReducer from "./slices/ticketsSlice";
 import projectsReducer from "./slices/projectsSlice";
 import authReducer from "./slices/authSlice";
-import { api } from "./apis/fireAuthApi";
+import baseApi from "./apis/baseApi";
 
 export const store = configureStore({
   reducer: {
     tickets: ticketsReducer,
     projects: projectsReducer,
     auth: authReducer,
-    [api.reducerPath]: api.reducer,
+    [baseApi.reducerPath]: baseApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-    getDefaultMiddleware().concat(api.middleware),
+    getDefaultMiddleware().concat(baseApi.middleware),
 });
 
 // Infer the `RootState` and `AppDispatch` types from the store itself

@@ -8,37 +8,38 @@ export type UserType = {
 };
 
 export type ProjectType = {
-  id: string;
+  id?: string;
   projectName: string;
   description: string;
-  manager: UserType;
-  users: UserType[] | undefined;
+  manager: string;
+  users?: UserType[] | undefined;
+  tickets?: TicketType[] | undefined;
   readonly createdAt: string;
-  tickets: TicketType[] | undefined;
 };
 
 export class ProjectClass implements ProjectType {
   id: string;
   projectName: string;
   description: string;
-  manager: UserType;
-  users: UserType[] | undefined;
-  tickets: TicketType[] | undefined;
+  manager: string;
+  readonly createdAt: string;
+  users?: UserType[] | undefined;
+  tickets?: TicketType[] | undefined;
   constructor(
     id: string,
     projectName: string,
     description: string,
-    manager: UserType,
-    users: UserType[] | undefined,
-    readonly createdAt: string,
-    tickets: TicketType[] | undefined
+    manager: string,
+    createdAt: string,
+    users?: UserType[] | undefined,
+    tickets?: TicketType[] | undefined
   ) {
     this.id = id;
     this.projectName = projectName;
     this.description = description;
     this.manager = manager;
-    this.users = users;
     this.createdAt = createdAt;
+    this.users = users;
     this.tickets = tickets;
   }
 }

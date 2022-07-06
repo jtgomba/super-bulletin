@@ -11,10 +11,10 @@ import { TicketType } from "../../Types/types";
 
 const Board = () => {
   const { id } = useParams();
-  const project = useAppSelector(selectProjects).filter(
+  /*   const project = useAppSelector(selectProjects).filter(
     (project) => project.id === id
   )[0];
-
+ */
   const listNames = ["Low", "Normal", "Medium", "High"];
 
   return (
@@ -26,7 +26,7 @@ const Board = () => {
         justifyContent="flex-start"
         alignItems="flex-start"
         spacing={1}>
-        {listNames.map((name) => {
+        {/*         {listNames.map((name) => {
           const tickets: TicketType[] = [];
           project.tickets?.forEach((ticket) => {
             if (ticket.priority === name) {
@@ -34,7 +34,7 @@ const Board = () => {
             }
           });
           return <BoardList priority={name} key={name} id={id} />;
-        })}
+        })} */}
         <BoardListForm />
       </Stack>
     </>

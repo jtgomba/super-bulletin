@@ -1,9 +1,10 @@
 import { useState } from "react";
 import { Stack, Typography, TextField, Button } from "@mui/material";
 import { useCreateProjectMutation } from "../../../Utils/apis/firestoreApi";
+import { ProjectType } from "../../../Types/types";
 
 const initialState = {
-  title: "",
+  projectName: "",
   description: "",
 };
 
@@ -13,7 +14,8 @@ const ProjectsForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setFormData({ title: "", description: "" });
+    createProject({ ...formData } as Partial<ProjectType>);
+    setFormData({ projectName: "", description: "" });
   };
 
   const handleChange = (
@@ -34,11 +36,11 @@ const ProjectsForm = () => {
         onSubmit={handleSubmit}>
         <Typography variant="h5">Create a project</Typography>
         <TextField
-          name="title"
+          name="projectName"
           required
           id="outlined-required"
           onChange={handleChange}
-          value={formData.title}
+          value={formData.projectName}
           label="Title"
           sx={{ backgroundColor: "white", borderRadius: 1 }}
         />

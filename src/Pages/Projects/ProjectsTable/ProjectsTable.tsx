@@ -10,14 +10,25 @@ import {
   Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import { useGetProjectsQuery } from "../../../Utils/apis/firestoreApi";
 
 import { useAppSelector } from "../../../Utils/hooks";
-import { selectProjects } from "../../../Utils/slices/projectsSlice";
+import { selectUid } from "../../../Utils/slices/authSlice";
 
 const ProjectsTable = () => {
   let navigate = useNavigate();
 
-  const projects = useAppSelector(selectProjects);
+  const id = useAppSelector(selectUid);
+
+  const { data, isLoading } = useGetProjectsQuery(id);
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (!data) {
+    return <div>No posts</div>;
+  }
 
   return (
     <>
@@ -33,7 +44,7 @@ const ProjectsTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {projects.map((project) => (
+            {/*             {projects.map((project) => (
               <TableRow
                 key={project.id}
                 sx={{
@@ -50,7 +61,7 @@ const ProjectsTable = () => {
                 <TableCell align="right">{project.tickets?.length}</TableCell>
                 <TableCell align="right">{project.users?.length}</TableCell>
               </TableRow>
-            ))}
+            ))} */}
           </TableBody>
         </Table>
       </TableContainer>
