@@ -90,7 +90,7 @@ export const firestoreApi = baseApi.injectEndpoints({
             projects.push(doc.data());
           });
           return {
-            data: { ...projects } as ProjectResponse,
+            data: projects,
           };
         } catch (e) {
           console.log(e);
