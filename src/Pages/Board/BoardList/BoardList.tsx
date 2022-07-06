@@ -4,7 +4,7 @@ import { grey } from "@mui/material/colors";
 
 import BoardCard from "../BoardCard/BoardCard";
 import { useAppSelector } from "../../../Utils/hooks";
-import { selectTickets } from "../../../Utils/reducers/ticketsSlice";
+import { selectTickets } from "../../../Utils/slices/ticketsSlice";
 import BoardListForm from "./BoardListForm/BoardListForm";
 
 const BoardList = () => {

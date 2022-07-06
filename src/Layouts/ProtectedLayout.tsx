@@ -2,7 +2,7 @@ import { Box, Toolbar } from "@mui/material";
 import { Navigate, useOutlet } from "react-router-dom";
 import { Navbar } from "../Components";
 import { useAppSelector } from "../Utils/hooks";
-import { selectAuth } from "../Utils/reducers/authSlice";
+import { selectAuth } from "../Utils/slices/authSlice";
 
 const ProtectedLayout = () => {
   const user = useAppSelector(selectAuth);

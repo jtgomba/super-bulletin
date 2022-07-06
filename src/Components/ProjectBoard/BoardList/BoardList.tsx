@@ -5,7 +5,7 @@ import { grey } from "@mui/material/colors";
 import BoardCard from "../BoardCard/BoardCard";
 import BoardListForm from "./BoardListForm/BoardListForm";
 import { useAppSelector } from "../../../Utils/hooks";
-import { selectProjects } from "../../../Utils/reducers/projectsSlice";
+import { selectProjects } from "../../../Utils/slices/projectsSlice";
 
 interface BoardListInterface {
   priority: string;
@@ -15,7 +15,7 @@ interface BoardListInterface {
 const BoardList = ({ priority, id }: BoardListInterface) => {
   const tickets = useAppSelector(selectProjects)
     .filter((project) => project.id === id)[0]
-    .tickets.filter((ticket) => ticket.priority === priority);
+    .tickets?.filter((ticket) => ticket.priority === priority);
 
   return (
     <Stack

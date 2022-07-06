@@ -13,10 +13,30 @@ export type ProjectType = {
   projectName: string;
   description: string;
   manager: UserType;
-  users: UserType[];
+  users: UserType[] | undefined;
   readonly createdAt: string;
-  tickets: TicketType[];
+  tickets: TicketType[] | undefined;
 };
+
+export class ProjectClass implements ProjectType {
+  constructor(
+    id: string,
+    projectName: string,
+    description: string,
+    manager: UserType,
+    users: UserType[] | undefined,
+    readonly createdAt: string,
+    tickets: TicketType[] | undefined
+  ) {
+    this.id = id;
+    this.projectName = projectName;
+    this.description = description;
+    this.manager = manager;
+    this.users = users;
+    this.createdAt = createdAt;
+    this.tickets = tickets;
+  }
+}
 
 interface CommentInterface {
   id: string;

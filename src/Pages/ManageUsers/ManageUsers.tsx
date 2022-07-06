@@ -1,5 +1,5 @@
 import React from "react";
-import { Typography, Box, Stack } from "@mui/material";
+import { Typography, Stack } from "@mui/material";
 import Form from "./Form/Form";
 import TableComponent from "../../Components/TableComponent/TableComponent";
 
@@ -12,8 +12,7 @@ const ManageUsers = () => {
       <Stack
         alignItems="flex-start"
         direction={{ xs: "column", lg: "row" }}
-        spacing={2}
-      >
+        spacing={2}>
         <Form />
         <TableComponent />
       </Stack>

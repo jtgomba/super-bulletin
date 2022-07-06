@@ -7,11 +7,12 @@ import {
   TableHead,
   TableRow,
   Typography,
+  Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 
 import { useAppSelector } from "../../Utils/hooks";
-import { selectProjects } from "../../Utils/reducers/projectsSlice";
+import { selectProjects } from "../../Utils/slices/projectsSlice";
 
 const Projects = () => {
   let navigate = useNavigate();
@@ -23,6 +24,9 @@ const Projects = () => {
       <Typography variant="h2" gutterBottom>
         My Projects
       </Typography>
+      <Button variant="contained" sx={{ marginBottom: 3 }}>
+        Create Project
+      </Button>
       <TableContainer component={Paper}>
         <Table sx={{ minWidth: 650 }} aria-label="simple table">
           <TableHead>
@@ -49,8 +53,8 @@ const Projects = () => {
                 </TableCell>
                 <TableCell align="right">{project.description}</TableCell>
                 <TableCell align="right">{project.manager.name}</TableCell>
-                <TableCell align="right">{project.tickets.length}</TableCell>
-                <TableCell align="right">{project.users.length}</TableCell>
+                <TableCell align="right">{project.tickets?.length}</TableCell>
+                <TableCell align="right">{project.users?.length}</TableCell>
               </TableRow>
             ))}
           </TableBody>

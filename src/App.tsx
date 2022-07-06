@@ -8,7 +8,7 @@ import { HomeLayout, ProtectedLayout } from "./Layouts";
 import { onAuthStateChanged } from "firebase/auth";
 import { AuthInterface } from "./Types/types";
 import { auth } from "./Utils/firebaseConfig";
-import { setUser, logoutUser } from "./Utils/reducers/authSlice";
+import { setUser, logoutUser } from "./Utils/slices/authSlice";
 import { useAppDispatch } from "./Utils/hooks";
 
 const App = () => {

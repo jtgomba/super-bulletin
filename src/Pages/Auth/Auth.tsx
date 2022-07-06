@@ -13,8 +13,8 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 
 import Input from "./Input";
 import { useAppDispatch, useAppSelector } from "../../Utils/hooks";
-import { selectAuth, setUser } from "../../Utils/reducers/authSlice";
-import { useLoginUserMutation } from "../../Utils/reducers/fireAuthReducer";
+import { selectAuth, setUser } from "../../Utils/slices/authSlice";
+import { useLoginUserMutation } from "../../Utils/apis/fireAuthApi";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const theme = createTheme();
@@ -77,14 +77,12 @@ const Auth = () => {
           alignItems: "center",
           padding: theme.spacing(2),
         }}
-        elevation={3}
-      >
+        elevation={3}>
         <Avatar
           sx={{
             margin: theme.spacing(1),
             backgroundColor: theme.palette.secondary.main,
-          }}
-        >
+          }}>
           <LockOutlinedIcon />
         </Avatar>
         <Typography variant="h5">{isSignup ? "Sign Up" : "Sign In"}</Typography>
@@ -94,8 +92,7 @@ const Auth = () => {
           sx={{
             width: "100%", // Fix IE 11 issue.
             marginTop: theme.spacing(3),
-          }}
-        >
+          }}>
           <Grid container spacing={2}>
             {isSignup && (
               <>
@@ -151,8 +148,7 @@ const Auth = () => {
             fullWidth
             variant="contained"
             color="primary"
-            sx={{ margin: theme.spacing(3, 0, 2) }}
-          >
+            sx={{ margin: theme.spacing(3, 0, 2) }}>
             {isSignup ? "Sign Up" : "Sign In"}
           </Button>
           <Grid container justifyContent="flex-end">

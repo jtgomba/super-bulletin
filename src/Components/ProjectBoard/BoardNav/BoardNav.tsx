@@ -3,7 +3,7 @@ import { Box, Toolbar, Typography, Button } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
 import { useAppSelector } from "../../../Utils/hooks";
-import { selectProjects } from "../../../Utils/reducers/projectsSlice";
+import { selectProjects } from "../../../Utils/slices/projectsSlice";
 
 interface BoardNavInterface {
   id: string | undefined;

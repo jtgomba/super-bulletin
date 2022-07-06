@@ -1,8 +1,8 @@
 import { configureStore } from "@reduxjs/toolkit";
-import ticketsReducer from "./reducers/ticketsSlice";
-import projectsReducer from "./reducers/projectsSlice";
-import authReducer from "./reducers/authSlice";
-import { api } from "./reducers/fireAuthReducer";
+import ticketsReducer from "./slices/ticketsSlice";
+import projectsReducer from "./slices/projectsSlice";
+import authReducer from "./slices/authSlice";
+import { api } from "./apis/fireAuthApi";
 
 export const store = configureStore({
   reducer: {

@@ -5,7 +5,7 @@ import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
 import { TicketType } from "../../../../Types/types";
 import { useAppDispatch } from "../../../../Utils/hooks";
-import { addTicket } from "../../../../Utils/reducers/ticketsSlice";
+import { addTicket } from "../../../../Utils/slices/ticketsSlice";
 
 const BoardListForm = () => {
   const dispatch = useAppDispatch();

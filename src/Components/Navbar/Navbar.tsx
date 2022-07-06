@@ -16,7 +16,7 @@ import MenuIcon from "@mui/icons-material/Menu";
 import { AccountCircle } from "@mui/icons-material";
 import HistoryEduRoundedIcon from "@mui/icons-material/HistoryEduRounded";
 import { useAppDispatch } from "../../Utils/hooks";
-import { logoutUser } from "../../Utils/reducers/authSlice";
+import { logoutUser } from "../../Utils/slices/authSlice";
 import { signOut } from "firebase/auth";
 import { auth } from "../../Utils/firebaseConfig";
 

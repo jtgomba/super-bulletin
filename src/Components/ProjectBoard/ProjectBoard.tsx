@@ -6,7 +6,7 @@ import BoardNav from "./BoardNav/BoardNav";
 import BoardListForm from "./BoardList/BoardListForm/BoardListForm";
 import { useParams } from "react-router-dom";
 import { useAppSelector } from "../../Utils/hooks";
-import { selectProjects } from "../../Utils/reducers/projectsSlice";
+import { selectProjects } from "../../Utils/slices/projectsSlice";
 import { TicketType } from "../../Types/types";
 
 const Board = () => {
@@ -28,7 +28,7 @@ const Board = () => {
         spacing={1}>
         {listNames.map((name) => {
           const tickets: TicketType[] = [];
-          project.tickets.forEach((ticket) => {
+          project.tickets?.forEach((ticket) => {
             if (ticket.priority === name) {
               tickets.push(ticket);
             }
