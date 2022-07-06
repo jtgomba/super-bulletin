@@ -38,7 +38,7 @@ const projectConverter = {
       data.projectName,
       data.description,
       data.manager,
-      data.createdAt,
+      new Date(data.createdAt[0]).toUTCString(),
       data.users,
       data.tickets
     );
@@ -87,7 +87,7 @@ export const firestoreApi = baseApi.injectEndpoints({
           ).withConverter(projectConverter);
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach((doc) => {
-            projects.push(doc.data());
+            projects.push({ ...doc.data() });
           });
           return {
             data: projects,

@@ -29,7 +29,6 @@ const ProjectsTable = () => {
   if (!data) {
     return <div>No posts</div>;
   }
-
   return (
     <>
       <TableContainer component={Paper}>
@@ -44,9 +43,9 @@ const ProjectsTable = () => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/*             {projects.map((project) => (
+            {data.map((project) => (
               <TableRow
-                key={project.id}
+                key={project.projectName}
                 sx={{
                   "&:last-child td, &:last-child th": { border: 0 },
                   cursor: "pointer",
@@ -57,11 +56,11 @@ const ProjectsTable = () => {
                   {project.projectName}
                 </TableCell>
                 <TableCell align="right">{project.description}</TableCell>
-                <TableCell align="right">{project.manager.name}</TableCell>
+
                 <TableCell align="right">{project.tickets?.length}</TableCell>
                 <TableCell align="right">{project.users?.length}</TableCell>
               </TableRow>
-            ))} */}
+            ))}
           </TableBody>
         </Table>
       </TableContainer>
