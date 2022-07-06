@@ -18,6 +18,12 @@ export type ProjectType = {
 };
 
 export class ProjectClass implements ProjectType {
+  id: string;
+  projectName: string;
+  description: string;
+  manager: UserType;
+  users: UserType[] | undefined;
+  tickets: TicketType[] | undefined;
   constructor(
     id: string,
     projectName: string,

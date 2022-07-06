@@ -13,6 +13,7 @@ const ProjectsForm = () => {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setFormData({ title: "", description: "" });
   };
 
   const handleChange = (
@@ -29,13 +30,15 @@ const ProjectsForm = () => {
         alignItems="strech"
         direction="column"
         spacing={2}
-        sx={{ minWidth: "300px" }}>
+        sx={{ minWidth: "300px" }}
+        onSubmit={handleSubmit}>
         <Typography variant="h5">Create a project</Typography>
         <TextField
           name="title"
           required
           id="outlined-required"
           onChange={handleChange}
+          value={formData.title}
           label="Title"
           sx={{ backgroundColor: "white", borderRadius: 1 }}
         />
@@ -44,6 +47,7 @@ const ProjectsForm = () => {
           required
           id="outlined-required"
           onChange={handleChange}
+          value={formData.description}
           label="Description"
           minRows={3}
           multiline
