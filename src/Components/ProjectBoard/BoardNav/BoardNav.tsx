@@ -2,18 +2,12 @@ import React from "react";
 import { Box, Toolbar, Typography, Button } from "@mui/material";
 import DashboardIcon from "@mui/icons-material/Dashboard";
 import MoreVertIcon from "@mui/icons-material/MoreVert";
-import { useAppSelector } from "../../../Utils/hooks";
-import { selectProjects } from "../../../Utils/slices/projectsSlice";
 
 interface BoardNavInterface {
   projectName: string | undefined;
 }
 
 const BoardNav = ({ projectName }: BoardNavInterface) => {
-  /*   const project = useAppSelector(selectProjects).filter(
-    (project) => project.id === id
-  )[0]; */
-
   return (
     <Box sx={{ flexGrow: 1, marginBottom: 3 }}>
       <Toolbar

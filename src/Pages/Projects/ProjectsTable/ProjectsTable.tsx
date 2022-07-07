@@ -6,8 +6,6 @@ import {
   TableContainer,
   TableHead,
   TableRow,
-  Typography,
-  Button,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
 import { useGetProjectsQuery } from "../../../Utils/apis/firestoreApi";
