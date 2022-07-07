@@ -6,10 +6,10 @@ import { useAppSelector } from "../../../Utils/hooks";
 import { selectProjects } from "../../../Utils/slices/projectsSlice";
 
 interface BoardNavInterface {
-  id: string | undefined;
+  projectName: string | undefined;
 }
 
-const BoardNav = ({ id }: BoardNavInterface) => {
+const BoardNav = ({ projectName }: BoardNavInterface) => {
   /*   const project = useAppSelector(selectProjects).filter(
     (project) => project.id === id
   )[0]; */
@@ -23,7 +23,7 @@ const BoardNav = ({ id }: BoardNavInterface) => {
         }}>
         <DashboardIcon color="disabled" sx={{ mr: 2 }} fontSize="large" />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          {/*           {project.projectName} */}
+          {projectName}
         </Typography>
         <Button
           color="inherit"

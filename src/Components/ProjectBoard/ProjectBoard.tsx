@@ -5,22 +5,25 @@ import BoardList from "./BoardList/BoardList";
 import BoardNav from "./BoardNav/BoardNav";
 import BoardListForm from "./BoardList/BoardListForm/BoardListForm";
 import { useParams } from "react-router-dom";
-import { useAppSelector } from "../../Utils/hooks";
-import { selectProjects } from "../../Utils/slices/projectsSlice";
-import { TicketType } from "../../Types/types";
+import { useGetProjectQuery } from "../../Utils/apis/firestoreApi";
 
 const Board = () => {
   const { id } = useParams();
-  /*   const project = useAppSelector(selectProjects).filter(
-    (project) => project.id === id
-  )[0];
- */
+  const { data, isLoading } = useGetProjectQuery(id as string);
+
   const listNames = ["Low", "Normal", "Medium", "High"];
+
+  if (isLoading) {
+    return <div>Loading</div>;
+  }
+
+  if (!data) {
+    return <div>No project</div>;
+  }
 
   return (
     <>
-      <BoardNav id={id} />
-
+      <BoardNav projectName={data.projectName} />
       <Stack
         direction="row"
         justifyContent="flex-start"

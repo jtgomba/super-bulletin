@@ -11,6 +11,7 @@ import {
   query,
   where,
   getDocs,
+  doc,
 } from "firebase/firestore";
 
 import baseApi from "./baseApi";
@@ -100,7 +101,28 @@ export const firestoreApi = baseApi.injectEndpoints({
         }
       },
     }),
+    getProject: build.query<ProjectType, string>({
+      queryFn: async (arg) => {
+        try {
+          const docRef = doc(db, "projects", arg).withConverter(
+            projectConverter
+          );
+          const docSnap = await getDoc(docRef);
+          const project = { id: docSnap.id, ...docSnap.data() } as ProjectType;
+          return {
+            data: project,
+          };
+        } catch (e) {
+          console.log(e);
+          return { error: "cound not get project" };
+        }
+      },
+    }),
   }),
 });
 
-export const { useCreateProjectMutation, useGetProjectsQuery } = firestoreApi;
+export const {
+  useCreateProjectMutation,
+  useGetProjectsQuery,
+  useGetProjectQuery,
+} = firestoreApi;
