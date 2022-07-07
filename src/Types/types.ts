@@ -11,7 +11,7 @@ export type ProjectType = {
   id?: string;
   projectName: string;
   description: string;
-  manager: string;
+  managerID: string;
   users?: UserType[] | undefined;
   tickets?: TicketType[] | undefined;
   readonly createdAt: string;
@@ -21,7 +21,7 @@ export class ProjectClass implements ProjectType {
   id: string;
   projectName: string;
   description: string;
-  manager: string;
+  managerID: string;
   readonly createdAt: string;
   users?: UserType[] | undefined;
   tickets?: TicketType[] | undefined;
@@ -29,7 +29,7 @@ export class ProjectClass implements ProjectType {
     id: string,
     projectName: string,
     description: string,
-    manager: string,
+    managerID: string,
     createdAt: string,
     users?: UserType[] | undefined,
     tickets?: TicketType[] | undefined
@@ -37,7 +37,7 @@ export class ProjectClass implements ProjectType {
     this.id = id;
     this.projectName = projectName;
     this.description = description;
-    this.manager = manager;
+    this.managerID = managerID;
     this.createdAt = createdAt;
     this.users = users;
     this.tickets = tickets;
@@ -63,13 +63,14 @@ export type TicketType = {
   id: string;
   title: string;
   description: string;
-  assignedTo?: UserType | UserType[];
-  submittedBy?: UserType;
   priority: "Low" | "Normal" | "Medium" | "High" | undefined;
-  status: "Open" | "Closed" | undefined;
+  status: "New" | "New" | "Open" | "New" | "Closed" | undefined;
   type: "Task" | "Announcement" | "Issue" | undefined;
   readonly createdAt: string;
-  updatedAt?: Date;
+  projectID: string;
+  submittedBy?: UserType;
+  assignedTo?: UserType | UserType[];
+  updatedAt?: string;
   comments?: CommentInterface[];
   history?: HistoryItemInterface[];
 };

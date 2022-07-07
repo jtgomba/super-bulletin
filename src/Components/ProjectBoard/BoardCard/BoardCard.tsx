@@ -11,7 +11,14 @@ import {
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import { TicketType } from "../../../Types/types";
 
-const BoardCard = ({ title, priority, description }: TicketType) => {
+const BoardCard = ({
+  title,
+  priority,
+  description,
+  assignedTo,
+  status,
+  type,
+}: TicketType) => {
   const [prio, setPrio] = useState<
     | "default"
     | "primary"

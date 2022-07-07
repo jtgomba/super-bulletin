@@ -38,6 +38,7 @@ const BoardList = () => {
               status={ticket.status}
               type={ticket.type}
               createdAt={ticket.createdAt}
+              projectID={ticket.projectID}
             />
           ))}
       </Stack>

@@ -4,15 +4,12 @@ import { grey } from "@mui/material/colors";
 
 import BoardCard from "../BoardCard/BoardCard";
 import BoardListForm from "./BoardListForm/BoardListForm";
-import { useAppSelector } from "../../../Utils/hooks";
-import { selectProjects } from "../../../Utils/slices/projectsSlice";
 
 interface BoardListInterface {
-  priority: string;
-  id: string | undefined;
+  status: string;
 }
 
-const BoardList = ({ priority, id }: BoardListInterface) => {
+const BoardList = ({ status }: BoardListInterface) => {
   /*   const tickets = useAppSelector(selectProjects)
     .filter((project) => project.id === id)[0]
     .tickets?.filter((ticket) => ticket.priority === priority); */
@@ -28,7 +25,7 @@ const BoardList = ({ priority, id }: BoardListInterface) => {
       alignItems="column">
       <Stack direction="row" justifyContent="space-between" alignItems="center">
         <Typography gutterBottom component="p" variant="h6">
-          {priority}
+          {status}
         </Typography>
         <IconButton>
           <MoreHorizIcon />

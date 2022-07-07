@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { Box, Button, Paper, InputBase, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
@@ -12,21 +12,7 @@ const BoardListForm = () => {
   const [ticketTitle, setTicketTitle] = useState<string>("");
   const [showForm, setShowForm] = useState(false);
 
-  const ticket: TicketType = {
-    id: "1",
-    title: ticketTitle,
-    description: "",
-    priority: undefined,
-    status: undefined,
-    type: undefined,
-    createdAt: "",
-  };
-
-  const handleAddTicket = () => {
-    setShowForm(!showForm);
-    dispatch(addTicket(ticket));
-    setTicketTitle("");
-  };
+  const handleAddTicket = () => {};
 
   return (
     <Box>
