@@ -14,7 +14,7 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Input from "./Input";
 import { useAppDispatch, useAppSelector } from "../../Utils/hooks";
 import { selectAuth, setUser } from "../../Utils/slices/authSlice";
-import { useLoginUserMutation } from "../../Utils/apis/fireAuthApi";
+import { useLoginUserMutation } from "../../Utils/apis/authApi";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const theme = createTheme();

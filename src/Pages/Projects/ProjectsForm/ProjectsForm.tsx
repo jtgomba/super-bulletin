@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Stack, Typography, TextField, Button } from "@mui/material";
-import { useCreateProjectMutation } from "../../../Utils/apis/firestoreApi";
+import { useCreateProjectMutation } from "../../../Utils/apis/projectsApi";
 import { ProjectType } from "../../../Types/types";
 
 const initialState = {

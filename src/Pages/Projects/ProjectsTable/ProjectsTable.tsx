@@ -8,7 +8,7 @@ import {
   TableRow,
 } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useGetProjectsQuery } from "../../../Utils/apis/firestoreApi";
+import { useGetProjectsQuery } from "../../../Utils/apis/projectsApi";
 
 import { useAppSelector } from "../../../Utils/hooks";
 import { selectUid } from "../../../Utils/slices/authSlice";

@@ -8,7 +8,7 @@ import { UserCredential } from "firebase/auth";
 import { AuthInterface } from "../../Types/types";
 import { auth } from "../firebaseConfig";
 
-export const fireAuthApi = baseApi.injectEndpoints({
+export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
     loginUser: build.mutation<
       AuthInterface,
@@ -38,4 +38,4 @@ export const fireAuthApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useLoginUserMutation } = fireAuthApi;
+export const { useLoginUserMutation } = authApi;

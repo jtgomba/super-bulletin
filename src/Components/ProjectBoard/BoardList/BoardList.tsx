@@ -1,6 +1,6 @@
 import { IconButton, Stack, Typography } from "@mui/material";
 import MoreHorizIcon from "@mui/icons-material/MoreHoriz";
-import { grey } from "@mui/material/colors";
+import { blueGrey } from "@mui/material/colors";
 
 import BoardCard from "../BoardCard/BoardCard";
 import BoardListForm from "./BoardListForm/BoardListForm";
@@ -17,7 +17,7 @@ const BoardList = ({ status }: BoardListInterface) => {
   return (
     <Stack
       sx={{
-        backgroundColor: grey[200],
+        backgroundColor: blueGrey[100],
         padding: 1,
         width: 300,
         borderRadius: 1,
@@ -54,7 +54,7 @@ const BoardList = ({ status }: BoardListInterface) => {
             />
           ))} */}
       </Stack>
-      <BoardListForm />
+      <BoardListForm status={status} />
     </Stack>
   );
 };

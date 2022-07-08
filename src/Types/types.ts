@@ -75,6 +75,52 @@ export type TicketType = {
   history?: HistoryItemInterface[];
 };
 
+export class TicketClass implements TicketType {
+  id: string;
+  title: string;
+  description: string;
+  priority: "Low" | "Normal" | "Medium" | "High" | undefined;
+  status: "New" | "Open" | "Closed" | undefined;
+  type: "Task" | "Announcement" | "Issue" | undefined;
+  createdAt: string;
+  projectID: string;
+  submittedBy?: UserType | undefined;
+  assignedTo?: UserType | UserType[] | undefined;
+  updatedAt?: string | undefined;
+  comments?: CommentInterface[] | undefined;
+  history?: HistoryItemInterface[] | undefined;
+
+  constructor(
+    id: string,
+    title: string,
+    description: string,
+    priority: "Low" | "Normal" | "Medium" | "High" | undefined,
+    status: "New" | "Open" | "Closed" | undefined,
+    type: "Task" | "Announcement" | "Issue" | undefined,
+    createdAt: string,
+    projectID: string,
+    submittedBy?: UserType | undefined,
+    assignedTo?: UserType | UserType[] | undefined,
+    updatedAt?: string | undefined,
+    comments?: CommentInterface[] | undefined,
+    history?: HistoryItemInterface[] | undefined
+  ) {
+    this.id = id;
+    this.title = title;
+    this.description = description;
+    this.priority = priority;
+    this.status = status;
+    this.type = type;
+    this.createdAt = createdAt;
+    this.projectID = projectID;
+    this.submittedBy = submittedBy;
+    this.assignedTo = assignedTo;
+    this.updatedAt = updatedAt;
+    this.comments = comments;
+    this.history = history;
+  }
+}
+
 export interface AuthInterface {
   displayName: string;
   email: string;

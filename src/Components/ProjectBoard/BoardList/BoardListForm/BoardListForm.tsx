@@ -2,17 +2,21 @@ import { useState } from "react";
 import { Box, Button, Paper, InputBase, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
+import { useParams } from "react-router-dom";
 
 import { TicketType } from "../../../../Types/types";
 import { useAppDispatch } from "../../../../Utils/hooks";
-import { addTicket } from "../../../../Utils/slices/ticketsSlice";
 
-const BoardListForm = () => {
+const BoardListForm = ({ status }: { status: string }) => {
+  const { id } = useParams();
   const dispatch = useAppDispatch();
   const [ticketTitle, setTicketTitle] = useState<string>("");
   const [showForm, setShowForm] = useState(false);
 
-  const handleAddTicket = () => {};
+  const handleAddTicket = () => {
+    console.log(id);
+    setShowForm(false);
+  };
 
   return (
     <Box>

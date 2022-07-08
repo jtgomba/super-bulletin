@@ -3,7 +3,7 @@ import { Stack } from "@mui/material";
 import BoardList from "./BoardList/BoardList";
 import BoardNav from "./BoardNav/BoardNav";
 import { useParams } from "react-router-dom";
-import { useGetProjectQuery } from "../../Utils/apis/firestoreApi";
+import { useGetProjectQuery } from "../../Utils/apis/projectsApi";
 
 const Board = () => {
   const { id } = useParams();
