@@ -59,16 +59,24 @@ interface HistoryItemInterface {
   dateChanged: Date;
 }
 
+export type TicketStatusType =
+  | "New"
+  | "Waiting"
+  | "Open"
+  | "Check"
+  | "Closed"
+  | undefined;
+
 export type TicketType = {
   id: string;
   title: string;
   description: string;
   priority: "Low" | "Normal" | "Medium" | "High" | undefined;
-  status: "New" | "New" | "Open" | "New" | "Closed" | undefined;
+  status: TicketStatusType;
   type: "Task" | "Announcement" | "Issue" | undefined;
   readonly createdAt: string;
   projectID: string;
-  submittedBy?: UserType;
+  submittedByID?: string;
   assignedTo?: UserType | UserType[];
   updatedAt?: string;
   comments?: CommentInterface[];
@@ -80,11 +88,11 @@ export class TicketClass implements TicketType {
   title: string;
   description: string;
   priority: "Low" | "Normal" | "Medium" | "High" | undefined;
-  status: "New" | "Open" | "Closed" | undefined;
+  status: TicketStatusType;
   type: "Task" | "Announcement" | "Issue" | undefined;
   createdAt: string;
   projectID: string;
-  submittedBy?: UserType | undefined;
+  submittedByID?: string;
   assignedTo?: UserType | UserType[] | undefined;
   updatedAt?: string | undefined;
   comments?: CommentInterface[] | undefined;
@@ -95,11 +103,11 @@ export class TicketClass implements TicketType {
     title: string,
     description: string,
     priority: "Low" | "Normal" | "Medium" | "High" | undefined,
-    status: "New" | "Open" | "Closed" | undefined,
+    status: TicketStatusType,
     type: "Task" | "Announcement" | "Issue" | undefined,
     createdAt: string,
     projectID: string,
-    submittedBy?: UserType | undefined,
+    submittedByID?: string | undefined,
     assignedTo?: UserType | UserType[] | undefined,
     updatedAt?: string | undefined,
     comments?: CommentInterface[] | undefined,
@@ -113,7 +121,7 @@ export class TicketClass implements TicketType {
     this.type = type;
     this.createdAt = createdAt;
     this.projectID = projectID;
-    this.submittedBy = submittedBy;
+    this.submittedByID = submittedByID;
     this.assignedTo = assignedTo;
     this.updatedAt = updatedAt;
     this.comments = comments;

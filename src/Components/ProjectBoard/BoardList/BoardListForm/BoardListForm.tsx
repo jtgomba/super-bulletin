@@ -4,18 +4,35 @@ import AddIcon from "@mui/icons-material/Add";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 import { useParams } from "react-router-dom";
 
-import { TicketType } from "../../../../Types/types";
-import { useAppDispatch } from "../../../../Utils/hooks";
+import { TicketStatusType, TicketType } from "../../../../Types/types";
+import { useAppDispatch, useAppSelector } from "../../../../Utils/hooks";
+import { useCreateTicketMutation } from "../../../../Utils/apis/ticketApi";
+import { selectUid } from "../../../../Utils/slices/authSlice";
 
-const BoardListForm = ({ status }: { status: string }) => {
-  const { id } = useParams();
-  const dispatch = useAppDispatch();
+const BoardListForm = ({
+  status,
+  projectID,
+}: {
+  status: TicketStatusType;
+  projectID: string;
+}) => {
+  const userID = useAppSelector(selectUid);
+
+  const [createTicket] = useCreateTicketMutation();
   const [ticketTitle, setTicketTitle] = useState<string>("");
   const [showForm, setShowForm] = useState(false);
 
   const handleAddTicket = () => {
-    console.log(id);
-    setShowForm(false);
+    if (ticketTitle.length > 0) {
+      createTicket({
+        title: ticketTitle,
+        status: status,
+        projectID: projectID,
+        submittedByID: userID,
+      });
+      setTicketTitle("");
+      setShowForm(false);
+    }
   };
 
   return (

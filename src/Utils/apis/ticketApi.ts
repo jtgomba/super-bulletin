@@ -18,10 +18,13 @@ import baseApi from "./baseApi";
 import { TicketType, TicketClass } from "../../Types/types";
 import { db } from "../firebaseConfig";
 
-const projectConverter = {
+const ticketConverter = {
   toFirestore: (ticket: WithFieldValue<Partial<TicketType>>): DocumentData => {
     return {
       title: ticket.title,
+      status: ticket.status,
+      projectID: ticket.projectID,
+      submittedByID: ticket.submittedByID,
       createdAt: serverTimestamp(),
     };
   },
@@ -39,7 +42,7 @@ const projectConverter = {
       data.type,
       new Date(data.createdAt.seconds).toUTCString(),
       data.projectID,
-      data.submittedBy,
+      data.submittedByID,
       data.assignedTo,
       data.updatedAt,
       data.comments,
@@ -52,23 +55,14 @@ type TicketResponse = TicketType[];
 
 export const firestoreApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    createTicket: build.mutation<
-      DocumentReference<Partial<TicketType>>,
-      Partial<TicketType>
-    >({
+    createTicket: build.mutation<TicketClass, Partial<TicketType>>({
       queryFn: async (arg) => {
         try {
-          const ref = collection(db, "tickets").withConverter(projectConverter);
+          const ref = collection(db, "tickets").withConverter(ticketConverter);
           const docRef = await addDoc(ref, arg);
-          const docSnap = await getDoc(docRef.withConverter(projectConverter));
-          if (docSnap.exists()) {
-            // Convert to ticket object
-            const project = docSnap.data();
-            // print the raw data
-            console.log(project);
-          }
+          const docSnap = await getDoc(docRef.withConverter(ticketConverter));
           return {
-            data: { ...docRef } as DocumentReference<Partial<TicketType>>,
+            data: { ...docSnap.data() } as TicketClass,
           };
         } catch (e) {
           console.log(e);
@@ -82,21 +76,21 @@ export const firestoreApi = baseApi.injectEndpoints({
     >({
       queryFn: async ({ fieldToSearchBy, searchCriteria }) => {
         try {
-          const projects: TicketResponse = [];
+          const tickets: TicketResponse = [];
 
           const q = query(
             collection(db, "tickets"),
             where(`${fieldToSearchBy}`, "==", `${searchCriteria}`)
-          ).withConverter(projectConverter);
+          ).withConverter(ticketConverter);
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach((doc) => {
-            projects.push({
+            tickets.push({
               ...doc.data({ serverTimestamps: "estimate" }),
               id: doc.id,
             });
           });
           return {
-            data: projects,
+            data: tickets,
           };
         } catch (e) {
           console.log(e);
@@ -107,9 +101,7 @@ export const firestoreApi = baseApi.injectEndpoints({
     getTicket: build.query<TicketType, string>({
       queryFn: async (arg) => {
         try {
-          const docRef = doc(db, "tickets", arg).withConverter(
-            projectConverter
-          );
+          const docRef = doc(db, "tickets", arg).withConverter(ticketConverter);
           const docSnap = await getDoc(docRef);
           const project = { id: docSnap.id, ...docSnap.data() } as TicketType;
           return {
