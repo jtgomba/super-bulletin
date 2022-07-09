@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import { TicketType } from "../../../Types/types";
-import { useParams } from "react-router-dom";
 
 const BoardCard = ({
   title,
@@ -20,8 +19,6 @@ const BoardCard = ({
   status,
   type,
 }: TicketType) => {
-  const { id } = useParams();
-
   const [prio, setPrio] = useState<
     | "default"
     | "primary"

@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { Container } from "@mui/material";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
@@ -35,7 +35,7 @@ const App = () => {
     return () => {
       unsubscribe();
     };
-  }, [dispatch]);
+  }, [dispatch, navigate]);
 
   return (
     <Container maxWidth={false}>

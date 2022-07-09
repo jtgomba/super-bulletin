@@ -6,7 +6,6 @@ import {
   collection,
   serverTimestamp,
   WithFieldValue,
-  DocumentReference,
   getDoc,
   query,
   where,
