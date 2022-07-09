@@ -44,7 +44,7 @@ const BoardCard = ({
   }, [priority]);
 
   return (
-    <Card sx={{ width: 280, minHeight: "130px" }}>
+    <Card sx={{ width: 280 }}>
       <CardHeader
         sx={{ padding: 1 }}
         avatar={<Chip label="With Text" size="small" color={prio} />}

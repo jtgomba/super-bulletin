@@ -69,6 +69,7 @@ export const firestoreApi = baseApi.injectEndpoints({
           return { error: "could not create ticket" };
         }
       },
+      invalidatesTags: [{ type: "Ticket", id: "LIST" }],
     }),
     getTickets: build.query<
       TicketResponse,
@@ -97,6 +98,16 @@ export const firestoreApi = baseApi.injectEndpoints({
           return { error: "cound not get tickets" };
         }
       },
+      providesTags: (result) =>
+        // is result available?
+        result
+          ? // successful query
+            [
+              ...result.map(({ id }) => ({ type: "Ticket", id } as const)),
+              { type: "Ticket", id: "LIST" },
+            ]
+          : // an error occurred, but we still want to refetch this query when `{ type: 'Posts', id: 'LIST' }` is invalidated
+            [{ type: "Ticket", id: "LIST" }],
     }),
     getTicket: build.query<TicketType, string>({
       queryFn: async (arg) => {
@@ -112,6 +123,7 @@ export const firestoreApi = baseApi.injectEndpoints({
           return { error: "cound not get project" };
         }
       },
+      providesTags: (result, error, id) => [{ type: "Ticket", id }],
     }),
   }),
 });

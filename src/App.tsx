@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { Container } from "@mui/material";
-import { Routes, Route, Navigate } from "react-router-dom";
+import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
 import { Dashboard, Board, ManageUsers, Projects, Auth } from "./Pages/";
 import { ProjectBoard } from "./Components/";
@@ -13,6 +13,7 @@ import { useAppDispatch } from "./Utils/hooks";
 
 const App = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
@@ -27,6 +28,7 @@ const App = () => {
         );
       } else {
         dispatch(logoutUser());
+        navigate("/login", { replace: true });
       }
     });
 

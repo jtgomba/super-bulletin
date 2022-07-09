@@ -4,14 +4,15 @@ import { blueGrey } from "@mui/material/colors";
 
 import BoardCard from "../BoardCard/BoardCard";
 import BoardListForm from "./BoardListForm/BoardListForm";
-import { TicketStatusType } from "../../../Types/types";
+import { TicketStatusType, TicketType } from "../../../Types/types";
 
 interface BoardListInterface {
   status: TicketStatusType;
   projectID: string;
+  tickets: TicketType[];
 }
 
-const BoardList = ({ status, projectID }: BoardListInterface) => {
+const BoardList = ({ status, projectID, tickets }: BoardListInterface) => {
   /*   const tickets = useAppSelector(selectProjects)
     .filter((project) => project.id === id)[0]
     .tickets?.filter((ticket) => ticket.priority === priority); */
@@ -42,7 +43,7 @@ const BoardList = ({ status, projectID }: BoardListInterface) => {
           overflow: "hidden auto",
           "&:last-child": { dispaly: "none" },
         }}>
-        {/*         {tickets &&
+        {tickets &&
           tickets.map((ticket) => (
             <BoardCard
               key={ticket.id}
@@ -53,8 +54,9 @@ const BoardList = ({ status, projectID }: BoardListInterface) => {
               status={ticket.status}
               type={ticket.type}
               createdAt={ticket.createdAt}
+              projectID={ticket.projectID}
             />
-          ))} */}
+          ))}
       </Stack>
       <BoardListForm status={status} projectID={projectID} />
     </Stack>
