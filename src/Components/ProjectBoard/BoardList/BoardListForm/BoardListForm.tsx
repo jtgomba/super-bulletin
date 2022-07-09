@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Box, Button, Paper, InputBase, IconButton } from "@mui/material";
+import {
+  Box,
+  Button,
+  Paper,
+  InputBase,
+  IconButton,
+  Skeleton,
+} from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
 
@@ -17,7 +24,7 @@ const BoardListForm = ({
 }) => {
   const userID = useAppSelector(selectUid);
 
-  const [createTicket] = useCreateTicketMutation();
+  const [createTicket, { isLoading }] = useCreateTicketMutation();
   const [ticketTitle, setTicketTitle] = useState<string>("");
   const [showForm, setShowForm] = useState(false);
 
@@ -36,6 +43,14 @@ const BoardListForm = ({
 
   return (
     <Box>
+      {isLoading && (
+        <Skeleton
+          variant="rectangular"
+          animation="wave"
+          width={280}
+          height={100}
+        />
+      )}
       {!showForm ? (
         <Button
           startIcon={<AddIcon />}
