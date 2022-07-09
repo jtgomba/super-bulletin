@@ -2,10 +2,9 @@ import { useState } from "react";
 import { Box, Button, Paper, InputBase, IconButton } from "@mui/material";
 import AddIcon from "@mui/icons-material/Add";
 import CloseRoundedIcon from "@mui/icons-material/CloseRounded";
-import { useParams } from "react-router-dom";
 
-import { TicketStatusType, TicketType } from "../../../../Types/types";
-import { useAppDispatch, useAppSelector } from "../../../../Utils/hooks";
+import { TicketStatusType } from "../../../../Types/types";
+import { useAppSelector } from "../../../../Utils/hooks";
 import { useCreateTicketMutation } from "../../../../Utils/apis/ticketApi";
 import { selectUid } from "../../../../Utils/slices/authSlice";
 
