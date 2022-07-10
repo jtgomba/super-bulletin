@@ -44,7 +44,7 @@ const BoardCard = ({
     <Card sx={{ width: 280 }}>
       <CardHeader
         sx={{ padding: 1 }}
-        avatar={<Chip label="With Text" size="small" color={prio} />}
+        /*  avatar={<Chip label={priority} size="small" color={prio} />} */
       />
       <CardContent sx={{ padding: "0px 0px 0px 10px" }}>
         <Typography component="p" variant="body1" sx={{ marginRight: 1 }}>
