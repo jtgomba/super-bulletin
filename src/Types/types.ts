@@ -12,7 +12,7 @@ export type ProjectType = {
   projectName: string;
   description: string;
   managerID: string;
-  users?: UserType[] | undefined;
+  users?: string[] | undefined;
   tickets?: TicketType[] | undefined;
   readonly createdAt: string;
 };
@@ -23,7 +23,7 @@ export class ProjectClass implements ProjectType {
   description: string;
   managerID: string;
   readonly createdAt: string;
-  users?: UserType[] | undefined;
+  users?: string[] | undefined;
   tickets?: TicketType[] | undefined;
   constructor(
     id: string,
@@ -31,7 +31,7 @@ export class ProjectClass implements ProjectType {
     description: string,
     managerID: string,
     createdAt: string,
-    users?: UserType[] | undefined,
+    users?: string[] | undefined,
     tickets?: TicketType[] | undefined
   ) {
     this.id = id;

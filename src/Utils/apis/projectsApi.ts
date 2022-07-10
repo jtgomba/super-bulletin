@@ -25,6 +25,7 @@ const projectConverter = {
     return {
       projectName: project.projectName,
       description: project.description,
+      managerID: project.managerID,
       createdAt: serverTimestamp(),
     };
   },
@@ -37,7 +38,7 @@ const projectConverter = {
       data.id,
       data.projectName,
       data.description,
-      data.manager,
+      data.managerID,
       new Date(data.createdAt.seconds).toUTCString(),
       data.users,
       data.tickets
@@ -49,10 +50,7 @@ type ProjectResponse = ProjectType[];
 
 export const firestoreApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
-    createProject: build.mutation<
-      DocumentReference<Partial<ProjectType>>,
-      Partial<ProjectType>
-    >({
+    createProject: build.mutation<ProjectClass, Partial<ProjectType>>({
       queryFn: async (arg) => {
         try {
           //here is where the magic happens
@@ -61,20 +59,15 @@ export const firestoreApi = baseApi.injectEndpoints({
           );
           const docRef = await addDoc(ref, arg);
           const docSnap = await getDoc(docRef.withConverter(projectConverter));
-          if (docSnap.exists()) {
-            // Convert to project object
-            const project = docSnap.data();
-            // print the raw data
-            console.log(project);
-          }
           return {
-            data: { ...docRef } as DocumentReference<Partial<ProjectType>>,
+            data: { ...docSnap.data() } as ProjectClass,
           };
         } catch (e) {
           console.log(e);
           return { error: "could not create project" };
         }
       },
+      invalidatesTags: [{ type: "Project", id: "LIST" }],
     }),
     getProjects: build.query<ProjectResponse, string>({
       queryFn: async (arg) => {
@@ -83,7 +76,7 @@ export const firestoreApi = baseApi.injectEndpoints({
 
           const q = query(
             collection(db, "projects"),
-            where("manager", "==", arg)
+            where("managerID", "==", arg)
           ).withConverter(projectConverter);
           const querySnapshot = await getDocs(q);
           querySnapshot.forEach((doc) => {
@@ -100,6 +93,16 @@ export const firestoreApi = baseApi.injectEndpoints({
           return { error: "cound not get projects" };
         }
       },
+      providesTags: (result) =>
+        // is result available?
+        result
+          ? // successful query
+            [
+              ...result.map(({ id }) => ({ type: "Project", id } as const)),
+              { type: "Project", id: "LIST" },
+            ]
+          : // an error occurred, but we still want to refetch this query when `{ type: 'Project', id: 'LIST' }` is invalidated
+            [{ type: "Project", id: "LIST" }],
     }),
     getProject: build.query<ProjectType, string>({
       queryFn: async (arg) => {
@@ -117,6 +120,7 @@ export const firestoreApi = baseApi.injectEndpoints({
           return { error: "cound not get project" };
         }
       },
+      providesTags: (result, error, id) => [{ type: "Project", id }],
     }),
   }),
 });

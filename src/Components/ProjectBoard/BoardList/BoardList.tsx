@@ -13,10 +13,6 @@ interface BoardListInterface {
 }
 
 const BoardList = ({ status, projectID, tickets }: BoardListInterface) => {
-  /*   const tickets = useAppSelector(selectProjects)
-    .filter((project) => project.id === id)[0]
-    .tickets?.filter((ticket) => ticket.priority === priority); */
-
   return (
     <Stack
       sx={{

@@ -2,20 +2,24 @@ import { useState } from "react";
 import { Stack, Typography, TextField, Button } from "@mui/material";
 import { useCreateProjectMutation } from "../../../Utils/apis/projectsApi";
 import { ProjectType } from "../../../Types/types";
+import { useAppSelector } from "../../../Utils/hooks";
+import { selectUid } from "../../../Utils/slices/authSlice";
 
 const initialState = {
   projectName: "",
   description: "",
+  managerID: "",
 };
 
 const ProjectsForm = () => {
+  const userID = useAppSelector(selectUid);
   const [formData, setFormData] = useState(initialState);
   const [createProject] = useCreateProjectMutation();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    createProject({ ...formData } as Partial<ProjectType>);
-    setFormData({ projectName: "", description: "" });
+    createProject({ ...formData, managerID: userID } as Partial<ProjectType>);
+    setFormData({ projectName: "", description: "", managerID: "" });
   };
 
   const handleChange = (

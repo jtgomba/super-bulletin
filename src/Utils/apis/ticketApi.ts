@@ -105,7 +105,7 @@ export const firestoreApi = baseApi.injectEndpoints({
               ...result.map(({ id }) => ({ type: "Ticket", id } as const)),
               { type: "Ticket", id: "LIST" },
             ]
-          : // an error occurred, but we still want to refetch this query when `{ type: 'Posts', id: 'LIST' }` is invalidated
+          : // an error occurred, but we still want to refetch this query when `{ type: 'Ticket', id: 'LIST' }` is invalidated
             [{ type: "Ticket", id: "LIST" }],
     }),
     getTicket: build.query<TicketType, string>({
