@@ -1,11 +1,33 @@
+import { ThirtyFpsSelect } from "@mui/icons-material";
+
 export type UserType = {
   id: string;
   name: string;
   email: string;
   role: "user" | "manager" | "admin";
   readonly createdAt: string;
-  projects?: string | string[];
 };
+
+export class UserClass implements UserType {
+  id: string;
+  name: string;
+  email: string;
+  role: "user" | "manager" | "admin";
+  readonly createdAt: string;
+  constructor(
+    id: string,
+    name: string,
+    email: string,
+    role: "user" | "manager" | "admin",
+    createdAt: string
+  ) {
+    this.id = id;
+    this.name = name;
+    this.email = email;
+    this.role = role;
+    this.createdAt = createdAt;
+  }
+}
 
 export type ProjectType = {
   id?: string;
@@ -67,17 +89,21 @@ export type TicketStatusType =
   | "Closed"
   | undefined;
 
+export type TicketPriorityType = "Low" | "Medium" | "High" | "None";
+
+export type TicketTypeType = "Task" | "Announcement" | "Issue" | undefined;
+
 export type TicketType = {
   id: string;
   title: string;
   description: string;
-  priority: "Low" | "Normal" | "Medium" | "High" | undefined;
+  priority: TicketPriorityType;
   status: TicketStatusType;
-  type: "Task" | "Announcement" | "Issue" | undefined;
+  type: TicketTypeType;
   readonly createdAt: string;
   projectID: string;
   submittedByID?: string;
-  assignedTo?: UserType | UserType[];
+  assignedTo?: string | string[] | undefined;
   updatedAt?: string;
   comments?: CommentInterface[];
   history?: HistoryItemInterface[];
@@ -87,13 +113,13 @@ export class TicketClass implements TicketType {
   id: string;
   title: string;
   description: string;
-  priority: "Low" | "Normal" | "Medium" | "High" | undefined;
+  priority: TicketPriorityType;
   status: TicketStatusType;
-  type: "Task" | "Announcement" | "Issue" | undefined;
+  type: TicketTypeType;
   createdAt: string;
   projectID: string;
   submittedByID?: string;
-  assignedTo?: UserType | UserType[] | undefined;
+  assignedTo?: string | string[] | undefined;
   updatedAt?: string | undefined;
   comments?: CommentInterface[] | undefined;
   history?: HistoryItemInterface[] | undefined;
@@ -102,13 +128,13 @@ export class TicketClass implements TicketType {
     id: string,
     title: string,
     description: string,
-    priority: "Low" | "Normal" | "Medium" | "High" | undefined,
+    priority: TicketPriorityType,
     status: TicketStatusType,
-    type: "Task" | "Announcement" | "Issue" | undefined,
+    type: TicketTypeType,
     createdAt: string,
     projectID: string,
     submittedByID?: string | undefined,
-    assignedTo?: UserType | UserType[] | undefined,
+    assignedTo?: string | string[] | undefined,
     updatedAt?: string | undefined,
     comments?: CommentInterface[] | undefined,
     history?: HistoryItemInterface[] | undefined

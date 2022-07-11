@@ -24,7 +24,7 @@ const BoardCard = ({ title, priority, description }: TicketType) => {
   >();
 
   useEffect(() => {
-    if (priority === "Normal") {
+    if (priority === "Low") {
       setPrio("primary");
     } else if (priority === "Medium") {
       setPrio("warning");

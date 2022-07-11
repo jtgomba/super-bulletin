@@ -10,6 +10,7 @@ import {
   Typography,
 } from "@mui/material/";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { useGetUsersQuery } from "../../../Utils/apis/authApi";
 
 const ITEM_HEIGHT = 48;
 const ITEM_PADDING_TOP = 8;
@@ -22,19 +23,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
 function getStyles(name: string, personName: string[], theme: Theme) {
   return {
     fontWeight:
@@ -45,12 +33,13 @@ function getStyles(name: string, personName: string[], theme: Theme) {
 }
 
 const Form = () => {
+  const { data } = useGetUsersQuery();
   const theme = useTheme();
   const [personName, setPersonName] = React.useState<string[]>([]);
-  const [age, setAge] = React.useState("");
+  const [role, setRole] = React.useState("");
 
-  const handleAgeChange = (event: SelectChangeEvent) => {
-    setAge(event.target.value);
+  const handleRoleChange = (event: SelectChangeEvent) => {
+    setRole(event.target.value);
   };
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
@@ -66,7 +55,7 @@ const Form = () => {
   return (
     <Box component="form" sx={{ display: "flex", flexDirection: "column" }}>
       <Typography variant="h5" gutterBottom>
-        Assign users to projects
+        Assign user roles
       </Typography>
       <FormControl
         variant="outlined"
@@ -81,14 +70,15 @@ const Form = () => {
           value={personName}
           onChange={handleChange}
           MenuProps={MenuProps}>
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName, theme)}>
-              {name}
-            </MenuItem>
-          ))}
+          {data &&
+            data.map((user) => (
+              <MenuItem
+                key={user.name}
+                value={user.name}
+                style={getStyles(user.name, personName, theme)}>
+                {user.name}
+              </MenuItem>
+            ))}
         </Select>
       </FormControl>
       <Divider sx={{ margin: "20px 0px" }} />
@@ -96,19 +86,19 @@ const Form = () => {
         variant="outlined"
         sx={{ m: 1, width: 300, backgroundColor: "white" }}>
         <InputLabel htmlFor="outlined-select-projects">
-          Select project to assign to
+          Select the role to assign
         </InputLabel>
         <Select
           id="outlined-select-projects"
           label="Select a proect to assign to"
-          value={age}
-          onChange={handleAgeChange}>
+          value={role}
+          onChange={handleRoleChange}>
           <MenuItem value="">
             <em>None</em>
           </MenuItem>
-          <MenuItem value={1}>1</MenuItem>
-          <MenuItem value={2}>2</MenuItem>
-          <MenuItem value={3}>3</MenuItem>
+          <MenuItem value={"user"}>User</MenuItem>
+          <MenuItem value={"manager"}>Manager</MenuItem>
+          <MenuItem value={"admin"}>Admin</MenuItem>
         </Select>
       </FormControl>
       <Button sx={{ marginTop: "20px" }} variant="contained">

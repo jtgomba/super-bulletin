@@ -21,6 +21,7 @@ const ticketConverter = {
   toFirestore: (ticket: WithFieldValue<Partial<TicketType>>): DocumentData => {
     return {
       title: ticket.title,
+      priority: ticket.priority,
       status: ticket.status,
       projectID: ticket.projectID,
       submittedByID: ticket.submittedByID,

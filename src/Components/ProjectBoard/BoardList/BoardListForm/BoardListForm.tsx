@@ -32,6 +32,7 @@ const BoardListForm = ({
     if (ticketTitle.length > 0) {
       createTicket({
         title: ticketTitle,
+        priority: "None",
         status: status,
         projectID: projectID,
         submittedByID: userID,
