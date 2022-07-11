@@ -114,13 +114,13 @@ export const firestoreApi = baseApi.injectEndpoints({
         try {
           const docRef = doc(db, "tickets", arg).withConverter(ticketConverter);
           const docSnap = await getDoc(docRef);
-          const project = { id: docSnap.id, ...docSnap.data() } as TicketType;
+          const ticket = { id: docSnap.id, ...docSnap.data() } as TicketType;
           return {
-            data: project,
+            data: ticket,
           };
         } catch (e) {
           console.log(e);
-          return { error: "cound not get project" };
+          return { error: "cound not get ticket" };
         }
       },
       providesTags: (result, error, id) => [{ type: "Ticket", id }],

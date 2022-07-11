@@ -10,14 +10,13 @@ import {
   XAxis,
   YAxis,
 } from "recharts";
-import { TicketType } from "../../Types/types";
 import { useGetTicketsQuery } from "../../Utils/apis/ticketApi";
 import { useAppSelector } from "../../Utils/hooks";
 import { selectUid } from "../../Utils/slices/authSlice";
 
-const BarChartComp = () => {
+const PriorityBarChart = () => {
   const id = useAppSelector(selectUid);
-  const { data, isLoading } = useGetTicketsQuery({
+  const { data } = useGetTicketsQuery({
     fieldToSearchBy: "submittedByID",
     searchCriteria: id,
   });
@@ -51,4 +50,4 @@ const BarChartComp = () => {
   );
 };
 
-export default BarChartComp;
+export default PriorityBarChart;

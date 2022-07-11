@@ -109,9 +109,9 @@ export const authApi = baseApi.injectEndpoints({
         try {
           const docRef = doc(db, "users", arg).withConverter(userConverter);
           const docSnap = await getDoc(docRef);
-          const project = { id: docSnap.id, ...docSnap.data() } as UserType;
+          const user = { id: docSnap.id, ...docSnap.data() } as UserType;
           return {
-            data: project,
+            data: user,
           };
         } catch (e) {
           console.log(e);

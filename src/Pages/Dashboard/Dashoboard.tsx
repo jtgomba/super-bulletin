@@ -1,7 +1,7 @@
 import { Typography, Stack, Box } from "@mui/material";
 
 import React from "react";
-import BarChartComp from "../../Components/BarChart/BarChartComp";
+import PriorityBarChart from "../../Components/BarChart/PriorityBarChart";
 import { useGetUserQuery } from "../../Utils/apis/authApi";
 import { useAppSelector } from "../../Utils/hooks";
 import { selectUid } from "../../Utils/slices/authSlice";
@@ -20,7 +20,7 @@ const Dashoboard = () => {
         alignItems="center"
         spacing={2}
         sx={{ flexWrap: "wrap" }}>
-        <BarChartComp />
+        <PriorityBarChart />
       </Stack>
     </>
   );
