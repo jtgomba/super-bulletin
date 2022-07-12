@@ -1,14 +1,11 @@
 import { SetStateAction, useCallback, useState } from "react";
 import { Box, Typography } from "@mui/material";
-import { Legend, ResponsiveContainer, Text } from "recharts";
+import { ResponsiveContainer } from "recharts";
 import { PieChart, Pie, Sector } from "recharts";
-
-const data = [
-  { name: "Project 1", value: 1 },
-  { name: "Project 2", value: 3 },
-  { name: "Project 3", value: 4 },
-  { name: "Project 4", value: 1 },
-];
+import { useGetProjectsQuery } from "../../Utils/apis/projectsApi";
+import { useAppSelector } from "../../Utils/hooks";
+import { selectUid } from "../../Utils/slices/authSlice";
+import { useGetTicketsQuery } from "../../Utils/apis/ticketApi";
 
 const renderActiveShape = (props: any) => {
   const RADIAN = Math.PI / 180;
@@ -82,6 +79,23 @@ const renderActiveShape = (props: any) => {
 };
 
 const ProjectPieChart = () => {
+  const id = useAppSelector(selectUid);
+
+  const { data: projects } = useGetProjectsQuery(id);
+  const { data: tickets } = useGetTicketsQuery({
+    fieldToSearchBy: "submittedByID",
+    searchCriteria: id,
+  });
+
+  const resultData = projects?.map((project) => {
+    const obj = {
+      name: project.projectName,
+      value: tickets?.filter((ticket) => ticket.projectID === project.id)
+        .length,
+    };
+    return obj;
+  });
+
   const [activeIndex, setActiveIndex] = useState(0);
   const onPieEnter = useCallback(
     (_: any, index: SetStateAction<number>) => {
@@ -98,12 +112,12 @@ const ProjectPieChart = () => {
         alignItems: "center",
         flexDirection: "column",
       }}>
-      <ResponsiveContainer width="100%" height={300}>
+      <ResponsiveContainer width="100%" height={350}>
         <PieChart>
           <Pie
             activeIndex={activeIndex}
             activeShape={renderActiveShape}
-            data={data}
+            data={resultData}
             cx={"50%"}
             cy={"50%"}
             innerRadius={60}
