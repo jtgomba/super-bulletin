@@ -10,17 +10,15 @@ const BoardNav = () => {
         sx={{
           boxShadow: "0px 0px 1px 1px  rgba(0, 0, 0, 0.2)",
           borderRadius: "3px",
-        }}
-      >
+        }}>
         <DashboardIcon color="disabled" sx={{ mr: 2 }} fontSize="large" />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>
-          Project Name
+          My Board
         </Typography>
         <Button
           color="inherit"
           endIcon={<MoreVertIcon />}
-          sx={{ display: { xs: "none", sm: "flex" } }}
-        >
+          sx={{ display: { xs: "none", sm: "flex" } }}>
           Show Menu
         </Button>
         <Button
