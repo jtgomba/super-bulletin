@@ -9,11 +9,18 @@ interface BoardNavInterface {
 
 const BoardNav = ({ projectName }: BoardNavInterface) => {
   return (
-    <Box sx={{ flexGrow: 1, marginBottom: 3 }}>
+    <Box
+      sx={{
+        flexGrow: 1,
+        marginBottom: 3,
+        display: "flex",
+        flexWrap: "wrap",
+      }}>
       <Toolbar
         sx={{
           boxShadow: "0px 0px 1px 1px  rgba(0, 0, 0, 0.2)",
           borderRadius: "3px",
+          width: "100%",
         }}>
         <DashboardIcon color="disabled" sx={{ mr: 2 }} fontSize="large" />
         <Typography variant="h6" component="div" sx={{ flexGrow: 1 }}>

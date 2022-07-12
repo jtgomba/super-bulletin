@@ -2,6 +2,8 @@ import { Typography, Stack, Box } from "@mui/material";
 
 import React from "react";
 import PriorityBarChart from "../../Components/BarChart/PriorityBarChart";
+import StatusBarChart from "../../Components/BarChart/StatusBarChart";
+import ProjectPieChart from "../../Components/PieChart/ProjectPieChart";
 import { useGetUserQuery } from "../../Utils/apis/authApi";
 import { useAppSelector } from "../../Utils/hooks";
 import { selectUid } from "../../Utils/slices/authSlice";
@@ -21,6 +23,9 @@ const Dashoboard = () => {
         spacing={2}
         sx={{ flexWrap: "wrap" }}>
         <PriorityBarChart />
+        <ProjectPieChart />
+        <StatusBarChart />
+        <ProjectPieChart />
       </Stack>
     </>
   );

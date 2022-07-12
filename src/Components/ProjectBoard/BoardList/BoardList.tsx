@@ -18,6 +18,7 @@ const BoardList = ({ status, projectID, tickets }: BoardListInterface) => {
       sx={{
         backgroundColor: blueGrey[100],
         padding: 1,
+        minWidth: 300,
         width: 300,
         borderRadius: 1,
       }}

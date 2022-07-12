@@ -1,5 +1,3 @@
-import { ThirtyFpsSelect } from "@mui/icons-material";
-
 export type UserType = {
   id: string;
   name: string;

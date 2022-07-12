@@ -61,7 +61,8 @@ const Board = () => {
         direction="row"
         justifyContent="flex-start"
         alignItems="flex-start"
-        spacing={1}>
+        spacing={1}
+        sx={{ height: "75vh", width: "100%", overflow: "auto" }}>
         <TicketLists id={id as string} />
       </Stack>
     </>
