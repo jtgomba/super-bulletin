@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { ReactText, useEffect, useState } from "react";
 import {
   Avatar,
   Button,
@@ -14,7 +14,10 @@ import LockOutlinedIcon from "@mui/icons-material/LockOutlined";
 import Input from "./Input";
 import { useAppDispatch, useAppSelector } from "../../Utils/hooks";
 import { selectAuth, setUser } from "../../Utils/slices/authSlice";
-import { useLoginUserMutation } from "../../Utils/apis/authApi";
+import {
+  useLoginUserAnonMutation,
+  useLoginUserMutation,
+} from "../../Utils/apis/authApi";
 import { useLocation, useNavigate } from "react-router-dom";
 
 const theme = createTheme();
@@ -31,6 +34,7 @@ const Auth = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const [loginUser] = useLoginUserMutation();
+  const [loginUserAnon] = useLoginUserAnonMutation();
   const user = useAppSelector(selectAuth);
 
   const dispatch = useAppDispatch();
@@ -40,6 +44,11 @@ const Auth = () => {
 
   const handleShowPassword = () => {
     setShowPassword((prevShowPassword) => !prevShowPassword);
+  };
+
+  const handleLoginAnon = async () => {
+    const user = await loginUserAnon().unwrap();
+    dispatch(setUser(user));
   };
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
@@ -158,6 +167,9 @@ const Auth = () => {
                   ? "Already have an account? Sign in"
                   : "Don't have an account? Sign Up"}
               </Button>
+            </Grid>
+            <Grid item>
+              <Button onClick={handleLoginAnon}>Login as demo account</Button>
             </Grid>
           </Grid>
         </Box>

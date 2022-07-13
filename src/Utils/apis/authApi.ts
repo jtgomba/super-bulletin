@@ -1,6 +1,7 @@
 import {
   browserSessionPersistence,
   signInWithEmailAndPassword,
+  signInAnonymously,
 } from "firebase/auth";
 
 import baseApi from "./baseApi";
@@ -47,6 +48,24 @@ type UserResponse = UserType[];
 
 export const authApi = baseApi.injectEndpoints({
   endpoints: (build) => ({
+    loginUserAnon: build.mutation<AuthInterface, void>({
+      queryFn: async (arg) => {
+        try {
+          const result: UserCredential = await signInAnonymously(auth);
+          await auth.setPersistence(browserSessionPersistence);
+          return {
+            data: {
+              displayName: result.user.displayName,
+              email: result.user.email,
+              uid: result.user.uid,
+              authenticated: "authenticated",
+            } as AuthInterface,
+          };
+        } catch (e) {
+          return { error: "could not log in" };
+        }
+      },
+    }),
     loginUser: build.mutation<
       AuthInterface,
       { email: string; password: string }
@@ -123,5 +142,9 @@ export const authApi = baseApi.injectEndpoints({
   }),
 });
 
-export const { useLoginUserMutation, useGetUserQuery, useGetUsersQuery } =
-  authApi;
+export const {
+  useLoginUserMutation,
+  useGetUserQuery,
+  useGetUsersQuery,
+  useLoginUserAnonMutation,
+} = authApi;
