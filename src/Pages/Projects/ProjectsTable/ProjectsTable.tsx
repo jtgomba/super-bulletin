@@ -35,7 +35,6 @@ const ProjectsTable = () => {
             <TableRow>
               <TableCell>Project Name</TableCell>
               <TableCell align="right">Project Description</TableCell>
-              <TableCell align="right">Manager</TableCell>
               <TableCell align="right">Tickets</TableCell>
               <TableCell align="right">Users</TableCell>
             </TableRow>
@@ -54,9 +53,8 @@ const ProjectsTable = () => {
                   {project.projectName}
                 </TableCell>
                 <TableCell align="right">{project.description}</TableCell>
-                <TableCell align="right">{project.managerID}</TableCell>
-                {/*                 <TableCell align="right">{project.tickets?.length}</TableCell>
-                <TableCell align="right">{project.users?.length}</TableCell> */}
+                <TableCell align="right">{project.tickets?.length}</TableCell>
+                <TableCell align="right">{project.users?.length}</TableCell>
               </TableRow>
             ))}
           </TableBody>
