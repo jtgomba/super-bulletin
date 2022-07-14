@@ -10,6 +10,7 @@ import {
 } from "@mui/material";
 import FileOpenIcon from "@mui/icons-material/FileOpen";
 import { TicketType } from "../../../Types/types";
+import SegmentIcon from "@mui/icons-material/Segment";
 
 const BoardCard = ({
   title,
@@ -17,7 +18,7 @@ const BoardCard = ({
   description,
   assignedTo,
   status,
-  type,
+  type = "Task",
 }: TicketType) => {
   const [prio, setPrio] = useState<
     | "default"
@@ -44,7 +45,13 @@ const BoardCard = ({
     <Card sx={{ width: 280 }}>
       <CardHeader
         sx={{ padding: 1 }}
-        /*  avatar={<Chip label={priority} size="small" color={prio} />} */
+        avatar={
+          <>
+            <Chip label={priority} size="small" color={prio} />
+            <Chip label={type} size="small" />
+            <Chip label={status} size="small" />
+          </>
+        }
       />
       <CardContent sx={{ padding: "0px 0px 0px 10px" }}>
         <Typography component="p" variant="body1" sx={{ marginRight: 1 }}>
@@ -54,9 +61,15 @@ const BoardCard = ({
           {description}
         </Typography>
       </CardContent>
-      <Box sx={{ display: "flex" }}>
+      {/* icons and stuff go here */}
+      <Box
+        sx={{
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+        }}>
         <IconButton aria-label="Example">
-          <FileOpenIcon fontSize="small" />
+          <SegmentIcon sx={{ transform: "scaleX(-1)" }} fontSize="small" />
         </IconButton>
       </Box>
     </Card>

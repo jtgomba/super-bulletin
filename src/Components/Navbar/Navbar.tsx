@@ -22,7 +22,6 @@ import { auth } from "../../Utils/firebaseConfig";
 
 const pages = [
   { linkName: "Home", destination: "home" },
-  { linkName: "Users", destination: "manage" },
   { linkName: "Projects", destination: "projects" },
   { linkName: "My Board", destination: "board" },
 ];
@@ -50,6 +49,9 @@ const Navbar = () => {
 
   const handleCloseUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
     signOut(auth);
     dispatch(logoutUser());
   };
@@ -189,7 +191,7 @@ const Navbar = () => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>
