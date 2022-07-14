@@ -49,6 +49,9 @@ const Navbar = () => {
 
   const handleCloseUserMenu = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorElUser(null);
+  };
+
+  const handleLogout = () => {
     signOut(auth);
     dispatch(logoutUser());
   };
@@ -188,7 +191,7 @@ const Navbar = () => {
               }}
               open={Boolean(anchorElUser)}
               onClose={handleCloseUserMenu}>
-              <MenuItem onClick={handleCloseUserMenu}>
+              <MenuItem onClick={handleLogout}>
                 <Typography textAlign="center">Logout</Typography>
               </MenuItem>
             </Menu>
