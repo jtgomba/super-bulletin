@@ -9,7 +9,7 @@ import { useGetTicketsQuery } from "../../Utils/apis/ticketApi";
 
 const TicketLists = ({ id }: { id: string }) => {
   const statuses = ["New", "Waiting", "Open", "Checking", "Done"];
-  const { data, isLoading } = useGetTicketsQuery({
+  const { data: tickets, isLoading } = useGetTicketsQuery({
     fieldToSearchBy: "projectID",
     searchCriteria: `${id}`,
   });
@@ -18,15 +18,15 @@ const TicketLists = ({ id }: { id: string }) => {
     return <div>Loading</div>;
   }
 
-  if (!data) {
+  if (!tickets) {
     return <div>No tickets?</div>;
   }
   //split data by status
   return (
     <>
-      {data &&
+      {tickets &&
         statuses.map((status) => {
-          const cardByStatus = data.filter(
+          const cardByStatus = tickets.filter(
             (ticket) => ticket.status === status
           );
           return (
