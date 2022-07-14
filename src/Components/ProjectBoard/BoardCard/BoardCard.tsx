@@ -8,7 +8,6 @@ import {
   IconButton,
   Box,
 } from "@mui/material";
-import FileOpenIcon from "@mui/icons-material/FileOpen";
 import { TicketType } from "../../../Types/types";
 import SegmentIcon from "@mui/icons-material/Segment";
 
