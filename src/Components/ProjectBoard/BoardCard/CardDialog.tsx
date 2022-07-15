@@ -7,7 +7,11 @@ import {
   Button,
 } from "@mui/material";
 import React from "react";
-import { useGetTicketQuery } from "../../../Utils/apis/ticketApi";
+import { useParams } from "react-router-dom";
+import {
+  useGetTicketQuery,
+  useGetTicketsQuery,
+} from "../../../Utils/apis/ticketApi";
 
 interface DialogProps {
   open: boolean;
@@ -17,7 +21,20 @@ interface DialogProps {
 }
 
 const CardDialog = ({ open, handleClose, id }: DialogProps) => {
-  const { data: ticket } = useGetTicketQuery(id);
+  const { projectId } = useParams();
+  const { ticket } = useGetTicketsQuery(
+    {
+      fieldToSearchBy: "projectID",
+      searchCriteria: `${projectId}`,
+    },
+    {
+      selectFromResult: ({ data }) => ({
+        ticket: data?.find((ticket) => ticket.id === id),
+      }),
+    }
+  );
+
+  console.log(id);
 
   return (
     <Dialog

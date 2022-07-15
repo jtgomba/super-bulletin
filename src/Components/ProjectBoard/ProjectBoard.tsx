@@ -12,7 +12,7 @@ const Board = () => {
   const { data: project, isLoading: projectLoading } = useGetProjectQuery(
     id as string
   );
-  const { data: tickets, isLoading: ticketsLoading } = useGetTicketsQuery({
+  const { data: tickets } = useGetTicketsQuery({
     fieldToSearchBy: "projectID",
     searchCriteria: `${id}`,
   });

@@ -43,6 +43,16 @@ const BoardCard = ({
     }
   }, [priority]);
 
+  const [open, setOpen] = useState(false);
+
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
+
   return (
     <Card sx={{ width: 280 }}>
       <CardHeader
@@ -70,10 +80,11 @@ const BoardCard = ({
           justifyContent: "space-between",
           alignItems: "center",
         }}>
-        <IconButton aria-label="Example">
+        <IconButton aria-label="Example" onClick={handleClickOpen}>
           <SegmentIcon sx={{ transform: "scaleX(-1)" }} fontSize="small" />
         </IconButton>
       </Box>
+      {open && <CardDialog open={open} handleClose={handleClose} id={id} />}
     </Card>
   );
 };
