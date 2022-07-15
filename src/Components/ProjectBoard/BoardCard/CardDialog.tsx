@@ -8,10 +8,7 @@ import {
 } from "@mui/material";
 import React from "react";
 import { useParams } from "react-router-dom";
-import {
-  useGetTicketQuery,
-  useGetTicketsQuery,
-} from "../../../Utils/apis/ticketApi";
+import { useGetTicketsQuery } from "../../../Utils/apis/ticketApi";
 
 interface DialogProps {
   open: boolean;
