@@ -12,21 +12,21 @@ import { useGetTicketsQuery } from "../../../Utils/apis/ticketApi";
 
 interface DialogProps {
   open: boolean;
-  id: string;
+  cardId: string;
   children?: React.ReactNode;
   handleClose: () => void;
 }
 
-const CardDialog = ({ open, handleClose, id }: DialogProps) => {
-  const { projectId } = useParams();
+const CardDialog = ({ open, handleClose, cardId }: DialogProps) => {
+  const { id } = useParams();
   const { ticket } = useGetTicketsQuery(
     {
       fieldToSearchBy: "projectID",
-      searchCriteria: `${projectId}`,
+      searchCriteria: `${id}`,
     },
     {
       selectFromResult: ({ data }) => ({
-        ticket: data?.find((ticket) => ticket.id === id),
+        ticket: data?.find((ticket) => ticket.id === cardId),
       }),
     }
   );

@@ -84,7 +84,7 @@ const BoardCard = ({
           <SegmentIcon sx={{ transform: "scaleX(-1)" }} fontSize="small" />
         </IconButton>
       </Box>
-      {open && <CardDialog open={open} handleClose={handleClose} id={id} />}
+      {open && <CardDialog open={open} handleClose={handleClose} cardId={id} />}
     </Card>
   );
 };
