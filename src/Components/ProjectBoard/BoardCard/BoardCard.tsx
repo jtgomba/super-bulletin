@@ -69,9 +69,6 @@ const BoardCard = ({
         <Typography component="p" variant="body1" sx={{ marginRight: 1 }}>
           {title}
         </Typography>
-        <Typography component="p" variant="body2">
-          {description}
-        </Typography>
       </CardContent>
       {/* icons and stuff go here */}
       <Box
