@@ -7,63 +7,49 @@ import { useGetProjectQuery } from "../../Utils/apis/projectsApi";
 import { TicketStatusType } from "../../Types/types";
 import { useGetTicketsQuery } from "../../Utils/apis/ticketApi";
 
-const TicketLists = ({ id }: { id: string }) => {
-  const statuses = ["New", "Waiting", "Open", "Checking", "Done"];
-  const { data: tickets, isLoading } = useGetTicketsQuery({
+const Board = () => {
+  const { id } = useParams();
+  const { data: project, isLoading: projectLoading } = useGetProjectQuery(
+    id as string
+  );
+  const { data: tickets, isLoading: ticketsLoading } = useGetTicketsQuery({
     fieldToSearchBy: "projectID",
     searchCriteria: `${id}`,
   });
 
-  if (isLoading) {
+  const statuses = ["New", "Waiting", "Open", "Checking", "Closed"];
+
+  if (projectLoading) {
     return <div>Loading</div>;
   }
 
-  if (!tickets) {
-    return <div>No tickets?</div>;
-  }
-  //split data by status
-  return (
-    <>
-      {tickets &&
-        statuses.map((status) => {
-          const cardByStatus = tickets.filter(
-            (ticket) => ticket.status === status
-          );
-          return (
-            <BoardList
-              key={status}
-              status={status as TicketStatusType}
-              projectID={id as string}
-              tickets={cardByStatus}
-            />
-          );
-        })}
-    </>
-  );
-};
-
-const Board = () => {
-  const { id } = useParams();
-  const { data, isLoading } = useGetProjectQuery(id as string);
-
-  if (isLoading) {
-    return <div>Loading</div>;
-  }
-
-  if (!data) {
+  if (!project) {
     return <div>No project</div>;
   }
 
   return (
     <>
-      <BoardNav projectName={data.projectName} />
+      <BoardNav projectName={project.projectName} />
       <Stack
         direction="row"
         justifyContent="flex-start"
         alignItems="flex-start"
         spacing={1}
-        sx={{ height: "75vh", width: "100%", overflow: "auto" }}>
-        <TicketLists id={id as string} />
+        sx={{ height: "72vh", width: "100%", overflow: "auto" }}>
+        {tickets &&
+          statuses.map((status) => {
+            const cardByStatus = tickets.filter(
+              (ticket) => ticket.status === status
+            );
+            return (
+              <BoardList
+                key={status}
+                status={status as TicketStatusType}
+                projectID={id as string}
+                tickets={cardByStatus}
+              />
+            );
+          })}
       </Stack>
     </>
   );

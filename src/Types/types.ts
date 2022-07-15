@@ -83,7 +83,7 @@ export type TicketStatusType =
   | "New"
   | "Waiting"
   | "Open"
-  | "Check"
+  | "Checking"
   | "Closed"
   | undefined;
 

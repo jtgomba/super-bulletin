@@ -21,21 +21,13 @@ const StatusBarChart = () => {
     searchCriteria: id,
   });
 
-  /*   export type TicketStatusType =
-  | "New"
-  | "Waiting"
-  | "Open"
-  | "Check"
-  | "Closed"
-  | undefined; */
-
   let barData = [
     {
       name: "Tickets by Status",
       New: data?.filter((item) => item.status === "New").length,
       Waiting: data?.filter((item) => item.status === "Waiting").length,
       Open: data?.filter((item) => item.status === "Open").length,
-      Check: data?.filter((item) => item.status === "Check").length,
+      Checking: data?.filter((item) => item.status === "Checking").length,
       Closed: data?.filter((item) => item.status === "Closed").length,
     },
   ];
@@ -52,7 +44,7 @@ const StatusBarChart = () => {
           <Bar dataKey="New" fill="#9ED8DB" />
           <Bar dataKey="Waiting" fill="grey" />
           <Bar dataKey="Open" fill="#467599" />
-          <Bar dataKey="Check" fill="orange" />
+          <Bar dataKey="Checking" fill="orange" />
           <Bar dataKey="Closed" fill="darkGrey" />
         </BarChart>
       </ResponsiveContainer>

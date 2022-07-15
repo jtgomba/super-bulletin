@@ -11,7 +11,10 @@ import {
 import { TicketType } from "../../../Types/types";
 import SegmentIcon from "@mui/icons-material/Segment";
 
+import CardDialog from "./CardDialog";
+
 const BoardCard = ({
+  id,
   title,
   priority,
   description,

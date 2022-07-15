@@ -73,7 +73,7 @@ export const firestoreApi = baseApi.injectEndpoints({
     }),
     getTickets: build.query<
       TicketResponse,
-      { fieldToSearchBy: string; searchCriteria: string }
+      { fieldToSearchBy?: string; searchCriteria?: string }
     >({
       queryFn: async ({ fieldToSearchBy, searchCriteria }) => {
         try {
