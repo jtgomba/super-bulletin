@@ -21,7 +21,6 @@ import HistoryIcon from "@mui/icons-material/History";
 import { blue, grey } from "@mui/material/colors";
 
 import { useGetTicketsQuery } from "../../../Utils/apis/ticketApi";
-import { borderRadius } from "@mui/system";
 
 interface DialogProps {
   open: boolean;
