@@ -20,7 +20,10 @@ import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import HistoryIcon from "@mui/icons-material/History";
 import { blue, grey } from "@mui/material/colors";
 
-import { useGetTicketsQuery } from "../../../Utils/apis/ticketApi";
+import {
+  useDeleteTicketMutation,
+  useGetTicketsQuery,
+} from "../../../Utils/apis/ticketApi";
 
 interface DialogProps {
   open: boolean;
@@ -42,6 +45,12 @@ const CardDialog = ({ open, handleClose, cardId }: DialogProps) => {
       }),
     }
   );
+  const [deleteTicket, { isLoading }] = useDeleteTicketMutation();
+
+  const handleDelete = async () => {
+    await deleteTicket(cardId);
+    handleClose();
+  };
 
   const [formData, setFormData] = useState(ticket);
   //add spacing for assigned to
@@ -145,7 +154,7 @@ const CardDialog = ({ open, handleClose, cardId }: DialogProps) => {
       </DialogContent>
       <DialogActions>
         <Button
-          onClick={handleClose}
+          onClick={handleDelete}
           autoFocus
           variant="contained"
           color="error">
