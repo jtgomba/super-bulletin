@@ -15,7 +15,6 @@ import {
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import SegmentIcon from "@mui/icons-material/Segment";
-import NavigationIcon from "@mui/icons-material/Navigation";
 import BookIcon from "@mui/icons-material/Book";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import HistoryIcon from "@mui/icons-material/History";
@@ -46,14 +45,14 @@ const CardDialog = ({ open, handleClose, cardId }: DialogProps) => {
       }),
     }
   );
-  const [deleteTicket, { isLoading }] = useDeleteTicketMutation();
+  const [deleteTicket] = useDeleteTicketMutation();
 
   const handleDelete = async () => {
     await deleteTicket(cardId);
     handleClose();
   };
 
-  const [formData, setFormData] = useState(ticket);
+  const [formData] = useState(ticket);
   //add spacing for assigned to
 
   return (
