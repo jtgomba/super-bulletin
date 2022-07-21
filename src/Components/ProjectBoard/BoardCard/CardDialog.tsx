@@ -16,6 +16,7 @@ import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import SegmentIcon from "@mui/icons-material/Segment";
 import NavigationIcon from "@mui/icons-material/Navigation";
+import BookIcon from "@mui/icons-material/Book";
 import QuestionAnswerIcon from "@mui/icons-material/QuestionAnswer";
 import HistoryIcon from "@mui/icons-material/History";
 import { blue, grey } from "@mui/material/colors";
@@ -78,10 +79,7 @@ const CardDialog = ({ open, handleClose, cardId }: DialogProps) => {
             flexDirection: "row",
             alignItems: "center",
           }}>
-          <NavigationIcon
-            sx={{ transform: " rotate(90deg)", marginRight: 1 }}
-            fontSize="small"
-          />
+          <BookIcon sx={{ marginRight: 1, marginBottom: 2 }} fontSize="small" />
           <Typography variant="h4" gutterBottom>
             {formData?.title}
           </Typography>
