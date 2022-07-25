@@ -23,6 +23,6 @@ I made this app to help to seamlessly report, monitor, and prioritize these bug 
 
 Currently the application has been built to do the following:
 
--   Users can create projects and tickets in a kanban style interface
+-   Users can create and create projects and tickets in a kanban style interface
 -   Provides charts that quickly visualise the status of projects and tickets. 
 -   Fully responsive on all devices
