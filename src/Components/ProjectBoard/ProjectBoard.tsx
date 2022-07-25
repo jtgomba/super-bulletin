@@ -29,7 +29,7 @@ const Board = () => {
 
   return (
     <>
-      <BoardNav projectName={project.projectName} />
+      <BoardNav projectName={project.projectName} projectId={project.id} />
       <Stack
         direction="row"
         justifyContent="flex-start"

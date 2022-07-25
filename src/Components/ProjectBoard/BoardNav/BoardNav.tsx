@@ -5,9 +5,10 @@ import MoreVertIcon from "@mui/icons-material/MoreVert";
 
 interface BoardNavInterface {
   projectName: string | undefined;
+  projectId: string | undefined;
 }
 
-const BoardNav = ({ projectName }: BoardNavInterface) => {
+const BoardNav = ({ projectName, projectId }: BoardNavInterface) => {
   return (
     <Box
       sx={{
