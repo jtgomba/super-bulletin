@@ -11,6 +11,7 @@ import {
   where,
   getDocs,
   doc,
+  deleteDoc,
 } from "firebase/firestore";
 
 import baseApi from "./baseApi";
@@ -67,6 +68,18 @@ export const firestoreApi = baseApi.injectEndpoints({
         }
       },
       invalidatesTags: [{ type: "Project", id: "LIST" }],
+    }),
+    deleteProject: build.mutation<{ success: boolean; id: string }, string>({
+      queryFn: async (arg) => {
+        try {
+          await deleteDoc(doc(db, "projects", arg));
+          return { data: { success: true, id: arg } };
+        } catch (e) {
+          console.log(e);
+          return { error: "could not delete ticket" };
+        }
+      },
+      invalidatesTags: (result, error, id) => [{ type: "Project", id }],
     }),
     getProjects: build.query<ProjectResponse, string>({
       queryFn: async (arg) => {
@@ -126,6 +139,7 @@ export const firestoreApi = baseApi.injectEndpoints({
 
 export const {
   useCreateProjectMutation,
+  useDeleteProjectMutation,
   useGetProjectsQuery,
   useGetProjectQuery,
 } = firestoreApi;
