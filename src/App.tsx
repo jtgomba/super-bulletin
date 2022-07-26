@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { Container } from "@mui/material";
 import { Routes, Route, Navigate, useNavigate } from "react-router-dom";
 
-import { Dashboard, Board, Projects, Auth } from "./Pages/";
+import { Dashboard, Projects, Auth } from "./Pages/";
 import { ProjectBoard } from "./Components/";
 import { HomeLayout, ProtectedLayout } from "./Layouts";
 import { onAuthStateChanged } from "firebase/auth";
@@ -49,7 +49,6 @@ const App = () => {
           <Route path="home" element={<Dashboard />} />
           <Route path="projects" element={<Projects />} />
           <Route path="projects/:id" element={<ProjectBoard />} />
-          <Route path="board" element={<Board />} />
         </Route>
       </Routes>
     </Container>
