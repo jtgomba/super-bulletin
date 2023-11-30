@@ -3,9 +3,10 @@ import { Inter } from 'next/font/google';
 import { Poppins } from 'next/font/google';
 import localFont from 'next/font/local';
 
-import './globals.css';
 import { cn } from '@/lib/utils';
+
 import { siteConfig } from '../../config/site';
+import './globals.css';
 
 const inter = Inter({ subsets: ['latin'] });
 
