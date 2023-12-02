@@ -4,17 +4,19 @@ import { Plus } from 'lucide-react';
 import { Logo } from '@/components/logo';
 import { Button } from '@/components/ui/button';
 
+import { MobileSidebar } from './mobile-sidebar';
+
 const Navbar = () => {
   return (
-    <nav className='px-4 fixed z-50 top-0 w-full h-14 border-b shadow-sm bg-white flex items-center'>
-      {/*TODO: Mobile Sidebar*/}
+    <nav className='fixed top-0 z-50 flex h-14 w-full items-center border-b bg-white px-4 shadow-sm'>
+      <MobileSidebar />
       <div className='flex items-center gap-x-4'>
         <div className='hidden md:flex'>
           <Logo />
         </div>
         <Button
           size='sm'
-          className='rounded-sm hidden md:block h-auto py-1.5 px-2'
+          className='hidden h-auto rounded-sm px-2 py-1.5 md:block'
           variant='primary'
         >
           Create
