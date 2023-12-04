@@ -10,6 +10,7 @@ import {
   AccordionTrigger,
 } from '@/components/ui/accordion';
 import { Button } from '@/components/ui/button';
+import { Skeleton } from '@/components/ui/skeleton';
 import { cn } from '@/lib/utils';
 
 export type Organization = {
@@ -108,5 +109,16 @@ export const NavItem = ({
         ))}
       </AccordionContent>
     </AccordionItem>
+  );
+};
+
+NavItem.Skeleton = function SkeletonNavItem() {
+  return (
+    <div className='flex items-center gap-x-2'>
+      <div className='relative h-10 w-10 shrink-0'>
+        <Skeleton className='absolute h-full w-full' />
+      </div>
+      <Skeleton className='h-10 w-full' />
+    </div>
   );
 };
