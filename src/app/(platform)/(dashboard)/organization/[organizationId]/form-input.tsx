@@ -1,7 +1,9 @@
+import { Input } from '@/components/ui/input';
+
 export const FormInput = ({ errors }: { errors?: string[] }) => {
   return (
     <div className='flex flex-col space-y-2'>
-      <input
+      <Input
         id='title'
         name='title'
         required
