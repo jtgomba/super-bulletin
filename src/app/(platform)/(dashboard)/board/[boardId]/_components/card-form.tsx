@@ -79,6 +79,7 @@ export const CardForm = forwardRef<HTMLTextAreaElement, CardFormProps>(
             id='listId'
             name='listId'
             value={listId}
+            onChange={() => {}}
           />
           <div className='flex items-center gap-x-1'>
             <FormSubmit>Add card</FormSubmit>
