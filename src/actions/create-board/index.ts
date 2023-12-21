@@ -49,7 +49,7 @@ const handler = async (data: InputType): Promise<ReturnType> => {
     });
   } catch (error) {
     return {
-      error: 'Faield to create',
+      error: 'Failed to create',
     };
   }
 
