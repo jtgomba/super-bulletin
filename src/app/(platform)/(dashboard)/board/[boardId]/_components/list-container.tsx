@@ -4,8 +4,8 @@ import { DragDropContext, Droppable } from '@hello-pangea/dnd';
 import { useEffect, useState } from 'react';
 import { toast } from 'sonner';
 
+import { updateCardOrder } from '@/actions/update-card-order';
 import { updateListOrder } from '@/actions/update-list-order';
-import { UpdateListOrder } from '@/actions/update-list-order/schema';
 import { useAction } from '@/hooks/use-action';
 import { ListWithCards } from '@/types';
 
@@ -31,6 +31,15 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
   const { execute: executeUpdateListOrder } = useAction(updateListOrder, {
     onSuccess: () => {
       toast.success('List reordered');
+    },
+    onError: (error) => {
+      toast.error(error);
+    },
+  });
+
+  const { execute: executeUpdateCardOrder } = useAction(updateCardOrder, {
+    onSuccess: () => {
+      toast.success('Card reordered');
     },
     onError: (error) => {
       toast.error(error);
@@ -107,7 +116,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         sourceList.cards = reorderedCards;
 
         setOrderedData(newOrderedData);
-        //TODO: Trigger Reorder Server Action
+        executeUpdateCardOrder({ boardId: boardId, items: reorderedCards });
         //User moves the card to another list
       } else {
         //Remove card from the source list
@@ -129,7 +138,7 @@ export const ListContainer = ({ data, boardId }: ListContainerProps) => {
         });
 
         setOrderedData(newOrderedData);
-        //TODO: Trigger Reorder Server Action
+        executeUpdateCardOrder({ boardId: boardId, items: destList.cards });
       }
     }
   };
