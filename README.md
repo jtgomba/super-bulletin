@@ -78,7 +78,7 @@ NEXT_PUBLIC_APP_URL=
 
 ### Setup Prisma
 
-Add MySQL Database (I used PlanetScale)
+Add PostgreSql Database (I used Neon to host it)
 
 ```shell
 npx prisma generate
@@ -96,6 +96,6 @@ npm run dev
 
 Running commands with npm `npm run [command]`
 
-| command         | description                              |
-| :-------------- | :--------------------------------------- |
-| `dev`           | Starts a development instance of the app |
+| command | description                              |
+| :------ | :--------------------------------------- |
+| `dev`   | Starts a development instance of the app |
