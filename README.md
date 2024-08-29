@@ -12,7 +12,7 @@
 -   Tailwind
 -   Shadcn
 -   Prisma
--   MySQL
+-   PostgreSQL
 
 **Overview**
 ------------
@@ -37,7 +37,7 @@ Embrace a more efficient task and resolution process with this user-friendly and
 - Card description, rename, delete, drag & drop reorder and copy
 - Card activity log
 - Landing page
-- MySQL DB
+- PostgreSQL DB
 - Prisma ORM
 - shadcnUI & TailwindCSS
 
@@ -78,7 +78,7 @@ NEXT_PUBLIC_APP_URL=
 
 ### Setup Prisma
 
-Add PostgreSql Database (I used Neon to host it)
+Add a PostgreSql Database (I used Neon to host it)
 
 ```shell
 npx prisma generate
